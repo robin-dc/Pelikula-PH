@@ -2,8 +2,13 @@ import { useNavigate } from "react-router-dom"
 
 const Login = () => {
     const navigate = useNavigate()
+
+    const authenticate = () => {
+        navigate('/profiles')
+    }
+
   return (
-    <div className="hero min-h-screen w-full bg-cover relative bg-no-repeat flex items-center justify-center inter-font">
+    <div className="hero min-h-screen w-full bg-cover relative bg-no-repeat flex items-center justify-center">
         <div className="overlay-1 absolute top-0 left-0 right-0 bottom-0">
         </div>
         <header className="fixed top-0 left-0 right-0 p-2">
@@ -13,7 +18,7 @@ const Login = () => {
         </header>
         <div className="z-10 ">
             <div className="w-[28rem] max-w-md bg-[#000000c7] p-3 rounded-lg">
-                <h1 className="text-[2.3rem] font-semibold mb-2 inter-font">Sign In</h1>
+                <h1 className="text-[2.3rem] font-semibold mb-2">Sign In</h1>
                 <form className="flex flex-col gap-1">
                     <div className="rounded-md bg-[#404040] w-full pt-1 pb-[0.2rem] relative">
                         <small className="absolute top-[0.5rem] left-[1.7rem] text-light">Email address</small>
@@ -25,23 +30,23 @@ const Login = () => {
                     </div>
                     <button
                     className="bg-secondary font-semibold rounded-md py-[0.7rem]"
-                    onClick={() => navigate('/authenticated')}>
-                        Sign in
+                    onClick={authenticate}>
+                        Sign In
                     </button>
                 </form>
                 <div className="flex flex-col gap-1 py-1">
-                   <p className=" text-gray-400 text-center font-light">or continue with</p>
+                   <p className=" text-gray-400 text-center font-light lato-font">or continue with</p>
                     <div className="flex gap-1">
                         <button className="bg-white flex rounded-md justify-center items-center py-[0.4rem] w-full"
-                        onClick={() => navigate('/authenticated')}>
+                        onClick={authenticate}>
                             <img src="/images/google.svg" alt="google icon" />
                         </button>
                         <button className="bg-white flex rounded-md justify-center items-center py-[0.4rem] w-full"
-                        onClick={() => navigate('/authenticated')}>
+                        onClick={authenticate}>
                             <img src="/images/github.svg" alt="github icon" />
                         </button>
                     </div>
-                   <p className=" text-gray-400 text-center font-light">
+                   <p className=" text-gray-400 text-center font-light lato-font">
                    First time using Pelikula PH?
                    <span className="font-medium text-white">&nbsp; Create an Account</span>
                    </p>

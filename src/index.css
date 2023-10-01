@@ -8,7 +8,9 @@
 @layer base{
   *{
     @apply text-white;
-    font-family: 'Lato', sans-serif;
+    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Inter', sans-serif;
+
   }
   body{
     @apply bg-primary;
@@ -40,7 +42,7 @@
   .active{
     @apply font-semibold;
   }
-  .inter-font{
-    font-family: 'Inter', sans-serif;
+  .lato-font{
+    font-family: 'Lato', sans-serif;
   }
 }

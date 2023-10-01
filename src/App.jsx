@@ -1,4 +1,4 @@
-import { Home, Login } from "./components"
+import { Home, Login, Profiles } from "./components"
 import {Routes, Route} from 'react-router-dom'
 
 function App() {
@@ -6,7 +6,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Login/>}/>
-      <Route path="authenticated" element={<Home/>}/>
+      <Route path="signin" element={<Login/>}/>
+      <Route path="profiles" element={<Profiles/>}/>
+      <Route path="users" element={<Home/>}/>
     </Routes>
   )
 }
