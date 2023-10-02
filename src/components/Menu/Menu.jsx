@@ -1,14 +1,31 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {IoIosArrowDown} from 'react-icons/io'
 import {AiOutlineUserSwitch} from 'react-icons/ai'
 import {GoSignOut} from 'react-icons/go'
 import { Link } from 'react-router-dom'
+import { useScroll } from '../../utils/ScrollContext'
 
 
 const Menu = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const {isScrolled} = useScroll()
 
-    const toggleDropdown = () => {
+    useEffect(() => {
+        setIsDropdownOpen(false)
+    }, [isScrolled])
+
+    useEffect(() => {
+        function handleClick(){
+            setIsDropdownOpen(false)
+        }
+
+        window.addEventListener('click', handleClick)
+
+        return () => window.removeEventListener('click', handleClick)
+    }, [])
+
+    const toggleDropdown = (e) => {
+        e.stopPropagation()
         setIsDropdownOpen(prevState => !prevState)
     }
   return (

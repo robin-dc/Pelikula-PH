@@ -6,3 +6,4 @@ export {default as Profiles} from './Profiles/Profiles';
 export {default as Menu} from './Menu/Menu';
 export {default as Movies} from './Movies/Movies';
 export {default as MovieList} from './MovieList/MovieList';
+export {default as Movie} from './Movie/Movie';

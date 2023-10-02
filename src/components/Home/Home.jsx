@@ -1,19 +1,41 @@
 import { FaInfoCircle } from 'react-icons/fa';
 import { BsFillPlayFill } from 'react-icons/bs';
 import {Movies, Navbar} from '..';
+import { useGetTrendingShowsQuery } from '../../services/tmdb';
 
 const Home = () => {
+    const {data, error, isFetching} = useGetTrendingShowsQuery()
+
+    if (!data) {
+        return (
+            <div className='min-h-screen bg-primary flex justify-center items-center'>
+                <div className="spinner relative grid place-items-center bg-secondary rounded-full h-[40px] w-[40px]">
+                    <div className="inner bg-primary w-[85%] h-[85%] rounded-full"></div>
+                </div>
+            </div>
+        )
+      }
+
+    const randomNumber = Math.floor(Math.random() * data?.results.length)
+
+    const {backdrop_path, title, overview, poster_path, release_date} = data?.results[randomNumber]
+
+    const backgroundImage = {
+        backgroundImage: data && `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
+    }
   return (
     <>
+
     <Navbar/>
-        <div className="min-h-screen bg-no-repeat bg-cover w-full hero relative flex items-center">
+        <div className="min-h-screen bg-no-repeat bg-cover w-full relative flex items-center"
+        style={backgroundImage}>
             <div className="overlay-1 absolute top-0 left-0 right-0 bottom-0">
             </div>
             <div className="overlay-2 absolute top-0 left-0 right-0 bottom-0">
             </div>
             <div className='container z-[1]'>
                 <div>
-                    <h1 className="text-[3rem] font-semibold">Spider-Man: Across the Spider-Verse</h1>
+                    <h1 className="text-[3rem] font-semibold">{title}</h1>
                     <div className="flex gap-1">
                         <button className="button bg-secondary flex gap-[0.3rem] items-center">
                             <BsFillPlayFill className='text-[1.5rem]'/>
@@ -22,8 +44,8 @@ const Home = () => {
                         <button className="button border border-gray-200">Watch Later</button>
                     </div>
                     <div className="w-[40%] py-1">
-                        <p className="text-light">Released: 2021-09-03</p>
-                        <p>After reuniting with Gwen Stacy, Brooklyn’s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the S...</p>
+                        <p className="text-light">Released: {release_date}</p>
+                        <p>{overview.substring(0, 180)}...</p>
 
                     </div>
                     <button className="button border border-gray-200 px-1 flex items-center gap-[0.4rem]">
