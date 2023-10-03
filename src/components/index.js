@@ -7,3 +7,5 @@ export {default as Menu} from './Menu/Menu';
 export {default as Movies} from './Movies/Movies';
 export {default as MovieList} from './MovieList/MovieList';
 export {default as Movie} from './Movie/Movie';
+export {default as MovieHeader} from './MovieHeader/MovieHeader';
+export {default as MovieDetails} from './MovieDetails/MovieDetails';

@@ -1,4 +1,5 @@
 
+import { NavLink } from 'react-router-dom'
 import {Menu, Search} from '..'
 import { useScroll } from '../../utils/ScrollContext'
 
@@ -11,10 +12,10 @@ const Navbar = () => {
         <nav className="px-2 py-[1.4rem] flex justify-between items-center">
             <img src="/images/pelikulaph.png" className="w-7 h-fit" alt="logo" />
             <ul className="flex gap-1 flex-1 px-3 text-[1.1rem]">
-                <li><small className="text-[#ffffffa1]">Home</small></li>
-                <li><small className="text-[#ffffffa1]">TV Shows</small></li>
-                <li><small className="text-[#ffffffa1]">Movies</small></li>
-                <li><small className="text-[#ffffffa1]">My List</small></li>
+                <li><small><NavLink to="/users" className="text-[#ffffffa1]">Home</NavLink></small></li>
+                <li><small><NavLink className="text-[#ffffffa1]">TV Shows</NavLink></small></li>
+                <li><small><NavLink className="text-[#ffffffa1]">Movies</NavLink></small></li>
+                <li><small><NavLink className="text-[#ffffffa1]">My List</NavLink></small></li>
             </ul>
             <div className='flex items-center gap-1'>
               <Search/>

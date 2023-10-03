@@ -1,4 +1,4 @@
-import { Home, Login, Profiles } from "./components"
+import { Home, Login, MovieDetails, Profiles } from "./components"
 import {Routes, Route} from 'react-router-dom'
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       <Route path="signin" element={<Login/>}/>
       <Route path="profiles" element={<Profiles/>}/>
       <Route path="users" element={<Home/>}/>
+      <Route path="movie" element={<MovieDetails/>}/>
     </Routes>
   )
 }
