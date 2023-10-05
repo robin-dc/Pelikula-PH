@@ -1,10 +1,14 @@
-import MovieList from "../MovieList/MovieList"
+import {MovieList} from ".."
+
 
 const Movies = () => {
+
   return (
     <div className="container py-1">
-        <MovieList/>
-        <MovieList/>
+        <MovieList type={'trending'}/>
+        <MovieList type={'popular'}/>
+        <MovieList type={'top_rated'}/>
+        <MovieList type={'upcoming'}/>
     </div>
   )
 }

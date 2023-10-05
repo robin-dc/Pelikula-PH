@@ -9,3 +9,4 @@ export {default as MovieList} from './MovieList/MovieList';
 export {default as Movie} from './Movie/Movie';
 export {default as MovieHeader} from './MovieHeader/MovieHeader';
 export {default as MovieDetails} from './MovieDetails/MovieDetails';
+export {default as Skeleton} from './Skeleton/Skeleton';

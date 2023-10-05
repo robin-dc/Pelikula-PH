@@ -2,6 +2,7 @@ import { FaInfoCircle } from 'react-icons/fa';
 import { BsFillPlayFill } from 'react-icons/bs';
 import {Movies, Navbar} from '..';
 import { useGetTrendingShowsQuery } from '../../services/tmdb';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const {data, error, isFetching} = useGetTrendingShowsQuery()
@@ -18,7 +19,7 @@ const Home = () => {
 
     const randomNumber = Math.floor(Math.random() * data?.results.length)
 
-    const {backdrop_path, title, overview, poster_path, release_date} = data?.results[randomNumber]
+    const {backdrop_path, title, overview, release_date, name, id} = data?.results[randomNumber]
 
     const backgroundImage = {
         backgroundImage: data && `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
@@ -35,7 +36,7 @@ const Home = () => {
             </div>
             <div className='container z-[1]'>
                 <div>
-                    <h1 className="text-[3rem] font-semibold">{title}</h1>
+                    <h1 className="text-[3rem] font-semibold">{title || name}</h1>
                     <div className="flex gap-1">
                         <button className="button bg-secondary flex gap-[0.3rem] items-center">
                             <BsFillPlayFill className='text-[1.5rem]'/>
@@ -48,9 +49,12 @@ const Home = () => {
                         <p>{overview.substring(0, 180)}...</p>
 
                     </div>
-                    <button className="button border border-gray-200 px-1 flex items-center gap-[0.4rem]">
-                        <FaInfoCircle className='text-[1.1rem]'/>
-                        <span>More Details</span>
+                    <button className="button border border-gray-200 px-1">
+                        <Link to={`/movie/${id}`} className='flex items-center gap-[0.4rem]'>
+                            <FaInfoCircle className='text-[1.1rem]'/>
+                            <span>More Details</span>
+                        </Link>
+
                     </button>
                 </div>
             </div>

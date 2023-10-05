@@ -3,17 +3,31 @@ import { Navigation, A11y } from 'swiper/modules';
 import {SlArrowLeft, SlArrowRight} from 'react-icons/sl'
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { useGetMoviesQuery, useGetTrendingShowsQuery } from "../../services/tmdb"
 
-import Movie from '../Movie/Movie';
 import { useState } from 'react';
+import {Movie, Skeleton} from '..';
 
-const MovieList = () => {
+const MovieList = ({type}) => {
   const swiper = useSwiper();
   const [isReachEnd, setIsReachEnd] = useState(false)
+  const [isReachStart, setIsReachStart] = useState(true)
+  const {data, error, isFetching} = useGetMoviesQuery({type})
+  const {data: trending, isFetching: loading} = useGetTrendingShowsQuery()
+
+  if (!data || !trending || isFetching || loading) {
+    return (
+        <div className='flex flex-col py-[8.5rem]'>
+            <Skeleton/>
+        </div>
+    )
+  }
+
+  const category = type.split('_' || ' ').map(item => item[0].toUpperCase() + item.slice(1)).join(' ')
 
   return (
     <div className="py-3">
-        <h1 className="text-[1.5rem] font-semibold mb-2">Trending Now</h1>
+        <h1 className="text-[1.5rem] font-semibold mb-2">{category}</h1>
         <Swiper
       // install Swiper modules
       modules={[Navigation, A11y]}
@@ -26,46 +40,34 @@ const MovieList = () => {
         effect='fade'
       className='z-0 py-2 px-1 relative group'
       onReachEnd={() => setIsReachEnd(true)}
-      onReachBeginning={() => setIsReachEnd(false)}
+      onReachBeginning={() => {
+        setIsReachEnd(false)
+        setIsReachStart(true)
+        }}
     >
       <div
       className='absolute h-full w-[150px] pointer-events-none bg-gradient-to-r from-primary to-transparent z-10 top-0 left-0 '></div>
       <div
       className='absolute h-full w-[200px] pointer-events-none bg-gradient-to-l from-primary to-transparent z-10 top-0 right-0 '></div>
       <button
-      className={`custom-prev-button absolute none left-0 top-[50%] translate-y-[-50%] text-light opacity-0 group-hover:opacity-40 transition duration-500 text-[2rem] z-[999] cursor-pointer ${isReachEnd ? 'block' : 'hidden'}`}
+      className={`custom-prev-button absolute none left-0 top-[50%] translate-y-[-50%] text-light opacity-0 group-hover:opacity-40 transition duration-500 text-[2rem] z-[999] cursor-pointer h-full px-1 ${!isReachStart ? 'block' : 'hidden'}`}
       onClick={() => swiper?.slidePrev()}>
         <SlArrowLeft/>
       </button>
       <button
-      className={`custom-next-button absolute right-0 translate-y-[-50%] top-[50%] text-light opacity-0 group-hover:opacity-40 transition duration-500 text-[2rem] z-[999] cursor-pointer  ${!isReachEnd ? 'block' : 'hidden'}`}
-      onClick={() => swiper?.slideNext()}>
+      className={`custom-next-button absolute right-0 translate-y-[-50%] top-[50%] text-light opacity-0 group-hover:opacity-40 transition duration-500 text-[2rem] z-[999] cursor-pointer h-full px-1 ${!isReachEnd ? 'block' : 'hidden'}`}
+      onClick={() => {
+        swiper?.slideNext()
+        setIsReachStart(false)
+        }}>
         <SlArrowRight/>
       </button>
-      <SwiperSlide>
-        <Movie/>
-      </SwiperSlide>
-      <SwiperSlide>
-        <Movie/>
-      </SwiperSlide>
-      <SwiperSlide>
-        <Movie/>
-      </SwiperSlide>
-      <SwiperSlide>
-        <Movie/>
-      </SwiperSlide>
-      <SwiperSlide>
-        <Movie/>
-      </SwiperSlide>
-      <SwiperSlide>
-        <Movie/>
-      </SwiperSlide>
-      <SwiperSlide>
-        <Movie/>
-      </SwiperSlide>
-      <SwiperSlide>
-        <Movie/>
-      </SwiperSlide>
+      {data.results.map((movie,index) => (
+        <SwiperSlide key={index} >
+          <Movie {...movie} />
+        </SwiperSlide>
+      ))}
+
     </Swiper>
     </div>
   )
