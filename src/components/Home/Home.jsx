@@ -19,7 +19,7 @@ const Home = () => {
 
     const randomNumber = Math.floor(Math.random() * data?.results.length)
 
-    const {backdrop_path, title, overview, release_date, name, id} = data?.results[randomNumber]
+    const {backdrop_path, title, overview, release_date, name, id, media_type} = data?.results[randomNumber]
 
     const backgroundImage = {
         backgroundImage: data && `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
@@ -50,7 +50,7 @@ const Home = () => {
 
                     </div>
                     <button className="button border border-gray-200 px-1">
-                        <Link to={`/movie/${id}`} className='flex items-center gap-[0.4rem]'>
+                        <Link to={`/${media_type !== 'movie' ? 'tv' : 'movie'}/${id}`} className='flex items-center gap-[0.4rem]'>
                             <FaInfoCircle className='text-[1.1rem]'/>
                             <span>More Details</span>
                         </Link>

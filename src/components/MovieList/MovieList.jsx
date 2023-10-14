@@ -26,8 +26,8 @@ const MovieList = ({type}) => {
   const category = type.split('_' || ' ').map(item => item[0].toUpperCase() + item.slice(1)).join(' ')
 
   return (
-    <div className="py-3">
-        <h1 className="text-[1.5rem] font-semibold mb-2">{category}</h1>
+    <div className="py-2">
+        <h1 className="text-[1.5rem] font-semibold ml-1">{category}</h1>
         <Swiper
       // install Swiper modules
       modules={[Navigation, A11y]}

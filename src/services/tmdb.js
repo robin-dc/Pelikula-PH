@@ -26,8 +26,8 @@ export const tmdbApi = createApi({
         getTrendingShows: builder.query({
             query: () => `/trending/all/day?api_key=${apiKey}`
         }),
-        getSingleMovie: builder.query({
-            query: ({id}) => `/movie/${id}?append_to_response=videos&api_key=${apiKey}`
+        getSingleMovieDetails: builder.query({
+            query: ({pathname}) => `${pathname}?append_to_response=videos,credits&api_key=${apiKey}`
         })
     })
 
@@ -42,5 +42,5 @@ export const {
     useGetTrendingShowsQuery,
     useGetGenresForTvQuery,
     useGetMoviesQuery,
-    useGetSingleMovieQuery
+    useGetSingleMovieDetailsQuery
 } = tmdbApi

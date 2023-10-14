@@ -10,8 +10,10 @@
     @apply text-white;
     /* font-family: 'Lato', sans-serif; */
     font-family: 'Inter', sans-serif;
-
   }
+  ul li a.active {
+    color: red !important;
+   }
   body{
     @apply bg-primary;
   }
@@ -48,7 +50,7 @@
 
 
   .spinner {
-    animation: zoomin 1.5s infinite alternate-reverse;
+    animation: zoomin 1s infinite alternate-reverse;
    }
 
 
@@ -62,8 +64,5 @@
      transform: scale(1.7);
      box-shadow: 0 0 100px 20px #000;
     }
-   }
-   .active {
-    @apply text-white !important;
    }
 }

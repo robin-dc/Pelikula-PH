@@ -10,3 +10,5 @@ export {default as Movie} from './Movie/Movie';
 export {default as MovieHeader} from './MovieHeader/MovieHeader';
 export {default as MovieDetails} from './MovieDetails/MovieDetails';
 export {default as Skeleton} from './Skeleton/Skeleton';
+export {default as Person} from './Person/Person';
+export {default as PeopleList} from './PeopleList/PeopleList';

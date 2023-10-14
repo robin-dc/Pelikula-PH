@@ -9,6 +9,7 @@ function App() {
       <Route path="signin" element={<Login/>}/>
       <Route path="profiles" element={<Profiles/>}/>
       <Route path="users" element={<Home/>}/>
+      <Route path="tv/:id" element={<MovieDetails/>}/>
       <Route path="movie/:id" element={<MovieDetails/>}/>
     </Routes>
   )
