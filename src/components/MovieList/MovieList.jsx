@@ -24,6 +24,7 @@ const MovieList = ({type}) => {
   }
 
   const category = type.split('_' || ' ').map(item => item[0].toUpperCase() + item.slice(1)).join(' ')
+  const sortedDescending = [...data.results].sort((a, b) => b.vote_average - a.vote_average)
 
   return (
     <div className="py-2">
@@ -62,7 +63,7 @@ const MovieList = ({type}) => {
         }}>
         <SlArrowRight/>
       </button>
-      {data.results.map((movie,index) => (
+      {sortedDescending.map((movie,index) => (
         <SwiperSlide key={index} >
           <Movie {...movie} />
         </SwiperSlide>

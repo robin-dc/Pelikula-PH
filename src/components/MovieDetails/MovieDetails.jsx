@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import {Navbar, MovieHeader, PeopleList} from '..'
+import {Navbar, MovieHeader, PeopleList, Trailer} from '..'
 import { useGetSingleMovieDetailsQuery } from '../../services/tmdb'
 import { useEffect, useState } from 'react'
 
@@ -37,7 +37,8 @@ const MovieDetails = () => {
     )
   }
 
-  const {backdrop_path, genres, homepage, overview, original_language, imdb_id, popularity, poster_path, release_date, revenue, runtime, spoken_languages, status, tagline, title, videos, vote_average, vote_count, name, credits: {cast,crew}} = data
+  const {backdrop_path, genres, homepage, overview, original_language, imdb_id, popularity, poster_path, release_date, revenue, runtime, spoken_languages, status, tagline, title, videos: {results}, vote_average, vote_count, name, credits: {cast,crew}} = data
+
 
   const filteredCrew = crew.filter(person => person.profile_path !== null);
   const filteredCast = cast.filter(person => person.profile_path !== null);
@@ -48,6 +49,7 @@ const MovieDetails = () => {
         <MovieHeader {...data}/>
         <PeopleList title={"Top Billed Cast"} data={filteredCast}/>
         <PeopleList title={"Production Cast"} data={filteredCrew}/>
+        <Trailer data={results}/>
     </div>
   )
 }

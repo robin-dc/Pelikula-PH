@@ -17,6 +17,12 @@ const MovieHeader = ({...data}) => {
         backgroundImage: data && `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
     }
 
+    function minutesToHoursAndMinutes(minutes) {
+        var hours = Math.floor(minutes / 60);
+        var remainingMinutes = minutes % 60;
+        return hours + "h " + remainingMinutes + "min";
+      }
+
   return (
     <div className="min-h-screen bg-no-repeat bg-cover w-full relative flex items-center"
         style={backgroundImage}>
@@ -27,8 +33,8 @@ const MovieHeader = ({...data}) => {
             <div className='container z-[1]'>
                 <div>
                     <h1 className="text-[3rem] font-semibold">{title || name}</h1>
-                    <div className="w-[40%] py-1 flex flex-col gap-[0.5rem]">
-                        <p className="text-light">Released: {release_date ? release_date : "N/A"} {runtime ? " | " + runtime + "min" : ""} | {spoken_languages[0].english_name}</p>
+                    <div className="w-[43%] py-1 flex flex-col gap-[0.5rem]">
+                        <p className="text-light">Released: {release_date ? release_date : "N/A"} {runtime ? " | " + minutesToHoursAndMinutes(runtime) : ""} | {spoken_languages[0].english_name}</p>
                         <p>{overview}</p>
                         <div className='flex gap-[0.5rem] flex-wrap'>
                         {genres.map((genre, index) => (
