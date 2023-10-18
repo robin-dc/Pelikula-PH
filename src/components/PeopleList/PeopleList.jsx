@@ -19,6 +19,7 @@ const PeopleList = ({title, data}) => {
             <span className='h-[2.5rem] w-[0.4rem] bg-secondary'></span>
             <h3 className="text-[1.5rem] font-semibold">{title}</h3>
         </div>
+        {data && data.length !== 0 ?
           <Swiper
           // install Swiper modules
           modules={[Navigation, A11y]}
@@ -36,10 +37,6 @@ const PeopleList = ({title, data}) => {
             setIsReachStart(true)
             }}
         >
-            {/* <div
-              className='absolute h-full w-[150px] pointer-events-none bg-gradient-to-r from-primary to-transparent z-10 top-0 left-0 '></div>
-              <div
-              className='absolute h-full w-[200px] pointer-events-none bg-gradient-to-l from-primary to-transparent z-10 top-0 right-0 '></div> */}
               <button
               className={`custom-prev-button absolute none left-0 top-[50%] translate-y-[-50%] text-[#f1c40f] opacity-0 group-hover:opacity-100 transition duration-500 text-[2rem] z-[999] cursor-pointer h-full px-1 ${!isReachStart ? 'block' : 'hidden'}`}
               onClick={() => swiper?.slidePrev()}>
@@ -60,6 +57,11 @@ const PeopleList = ({title, data}) => {
               ))}
 
             </Swiper>
+            :
+              <div className='py-2 flex items-center justify-center'>
+                  <p className='text-light'>No data found</p>
+              </div>
+              }
         </div>
       </div>
     )

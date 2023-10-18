@@ -14,8 +14,9 @@
   ul li a.active {
     color: red !important;
    }
-  body{
-    @apply bg-primary;
+  body, html{
+    scroll-behavior: smooth;
+    @apply bg-primary scroll-smooth;
   }
   body::-webkit-scrollbar{
     display: none;

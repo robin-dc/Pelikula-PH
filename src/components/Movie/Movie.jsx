@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 
-const Movie = ({...movie}) => {
+const Movie = ({type, ...movie}) => {
   const { title, poster_path, vote_average, name, id, media_type } = movie
 
   return (
-    <Link to={`/${media_type !== 'tv' ? 'movie' : 'tv'}/${id}`} className="cursor-pointer z-[999999999]">
+    <Link to={`/${type == "kdramas" || type == "animes" || media_type == 'tv' ? 'tv' : 'movie'}/${id}`} className="cursor-pointer z-[999999999]">
         {poster_path && <div className='hover:scale-[1.06] transition-all duration-300 relative mx-[0.5rem]'>
           <img src={`https://www.themoviedb.org/t/p/original/${poster_path}`} alt="movie" className="w-full hover:shadow-2xl hover:shadow-[#38383854] rounded-md" loading="lazy" title={title}/>
           <img src="/images/pelikulaicon.png" alt="icon" className="w-[1.7rem] absolute top-[0.5rem] left-[0.2rem]" loading="lazy" />

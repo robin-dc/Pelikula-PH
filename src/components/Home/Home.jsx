@@ -3,13 +3,18 @@ import { BsFillPlayFill } from 'react-icons/bs';
 import {Movies, Navbar} from '..';
 import { useGetTrendingShowsQuery } from '../../services/tmdb';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Home = () => {
     const {data, error, isFetching} = useGetTrendingShowsQuery()
 
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [])
+
     if (!data) {
         return (
-            <div className='min-h-screen bg-primary flex justify-center items-center'>
+            <div className='min-h-screen bg-primary flex justify-center items-center fixed top-0 bottom-0 right-0 left-0'>
                 <div className="spinner relative grid place-items-center bg-secondary rounded-full h-[40px] w-[40px]">
                     <div className="inner bg-primary w-[85%] h-[85%] rounded-full"></div>
                 </div>
@@ -19,7 +24,8 @@ const Home = () => {
 
     const randomNumber = Math.floor(Math.random() * data?.results.length)
 
-    const {backdrop_path, title, overview, release_date, name, id, media_type} = data?.results[randomNumber]
+    const filteredMovies = data.results.filter(movie => movie.poster_path !== null)
+    const {backdrop_path, title, overview, release_date, name, id, media_type} = filteredMovies[randomNumber]
 
     const backgroundImage = {
         backgroundImage: data && `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,

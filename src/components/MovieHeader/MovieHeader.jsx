@@ -11,7 +11,7 @@ const MovieHeader = ({...data}) => {
         )
       }
 
-    const {backdrop_path, genres, homepage, overview, original_language, imdb_id, popularity, poster_path, release_date, revenue, runtime, spoken_languages, status, tagline, title, videos, vote_average, vote_count, name} = data
+    const {first_air_date, backdrop_path, genres, homepage, overview, original_language, imdb_id, popularity, poster_path, release_date, revenue, runtime, spoken_languages, status, tagline, title, videos, vote_average, vote_count, name} = data
 
     const backgroundImage = {
         backgroundImage: data && `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
@@ -34,7 +34,7 @@ const MovieHeader = ({...data}) => {
                 <div>
                     <h1 className="text-[3rem] font-semibold">{title || name}</h1>
                     <div className="w-[43%] py-1 flex flex-col gap-[0.5rem]">
-                        <p className="text-light">Released: {release_date ? release_date : "N/A"} {runtime ? " | " + minutesToHoursAndMinutes(runtime) : ""} | {spoken_languages[0].english_name}</p>
+                        <p className="text-light">Released: {release_date ? release_date : first_air_date} {runtime ? " | " + minutesToHoursAndMinutes(runtime) : ""} | {spoken_languages[0].english_name}</p>
                         <p>{overview}</p>
                         <div className='flex gap-[0.5rem] flex-wrap'>
                         {genres.map((genre, index) => (

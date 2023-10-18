@@ -14,3 +14,4 @@ export {default as Person} from './Person/Person';
 export {default as PeopleList} from './PeopleList/PeopleList';
 export {default as Trailer} from './Trailer/Trailer';
 export {default as Footer} from './Footer/Footer';
+export {default as Dropdown} from './Dropdown/Dropdown';

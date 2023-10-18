@@ -35,7 +35,7 @@ const Menu = () => {
             <IoIosArrowDown className={`${isDropdownOpen && "rotate-[180deg]"} transition-all duration-200 text-[1.2rem]`}/>
         </div>
 
-        {isDropdownOpen && <div className='border-2 border-[#303030af] bg-black rounded-lg absolute -bottom-[13.5rem] right-0 min-w-[230px] text-[0.9rem]'>
+        {isDropdownOpen && <div className='border-2 border-[#303030af] bg-black rounded-lg absolute mt-1 right-0 min-w-[230px] text-[0.9rem]'>
            <div className=' py-[1.5rem] flex flex-col gap-[1.5rem]'>
             <div className='w-full px-[1.5rem] flex gap-[0.6rem] items-center'>
                 <img src="https://robin-dc.github.io/Facebook-UI-Clone/images/robin.png" alt="user" className='w-[1.8rem] rounded-full' />

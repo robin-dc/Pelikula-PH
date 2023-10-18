@@ -25,6 +25,16 @@ const MovieList = ({type}) => {
 
   const category = type.split('_' || ' ').map(item => item[0].toUpperCase() + item.slice(1)).join(' ')
   const sortedDescending = [...data.results].sort((a, b) => b.vote_average - a.vote_average)
+  const sortedDate = [...data.results].sort((a, b) => {
+    const dateA = new Date(a.first_air_date || a.release_date);
+    const dateB = new Date(b.first_air_date || b.release_date);
+
+    return dateB - dateA;
+  });
+
+  const filteredMovies = type === "kdramas" ?
+                          sortedDate.filter(movie => movie.poster_path !== null) :
+                          sortedDescending.filter(movie => movie.poster_path !== null)
 
   return (
     <div className="py-2">
@@ -63,9 +73,9 @@ const MovieList = ({type}) => {
         }}>
         <SlArrowRight/>
       </button>
-      {sortedDescending.map((movie,index) => (
+      {filteredMovies.map((movie,index) => (
         <SwiperSlide key={index} >
-          <Movie {...movie} />
+          <Movie {...movie} type={type} />
         </SwiperSlide>
       ))}
 
