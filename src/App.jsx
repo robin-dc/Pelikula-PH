@@ -1,4 +1,4 @@
-import { Footer, Home, Login, MovieDetails, Profiles } from "./components"
+import { Footer, Home, Login, MovieDetails, MyList, Profiles } from "./components"
 import {Routes, Route} from 'react-router-dom'
 
 function App() {
@@ -9,8 +9,9 @@ function App() {
         <Route path="/" element={<Login/>}/>
         <Route path="signin" element={<Login/>}/>
         <Route path="profiles" element={<Profiles/>}/>
-        <Route path="users" element={<Home/>}/>
+        <Route path="home" element={<Home/>}/>
         <Route path="tv/:id" element={<MovieDetails/>}/>
+        <Route path="list" element={<MyList/>}/>
         <Route path="movie/:id" element={<MovieDetails/>}/>
       </Routes>
       <Footer/>

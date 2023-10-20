@@ -19,7 +19,6 @@ const MovieDetails = () => {
     return () => clearTimeout(timeout)
   }, [])
 
-
   if (isLoading || isFetching) {
     return (
         <div className='min-h-screen bg-primary flex justify-center items-center fixed top-0 bottom-0 right-0 left-0'>

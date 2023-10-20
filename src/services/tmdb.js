@@ -6,24 +6,17 @@ export const tmdbApi = createApi({
     reducerPath: 'tmdbApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://api.themoviedb.org/3'}),
     endpoints: (builder) => ({
-        // get genres for movies
-        getGenresForMovies: builder.query({
-            query: () => `/genre/movie/list?api_key=${apiKey}`
-        }),
-        // get genres for tvshows
-        getGenresForTv: builder.query({
-            query: () => `/genre/tv/list?api_key=${apiKey}`
-        }),
-        // get movies by type of list
+
+        // get movies by type of list : for recommendations on homepage
         getMovies: builder.query({
             query: ({type}) => {
                 if(type == 'trending') {
                     return `/trending/all/day?api_key=${apiKey}&sort_by=vote_average.desc`
                 }
-                else if(type == 'kdramas'){
+                else if(type == 'kdrama'){
                     return `/tv/on_the_air?api_key=${apiKey}&append_to_response=media_type&include_adult=false&include_video=true&language=en-US&with_original_language=ko`
                 }
-                else if(type == 'animes'){
+                else if(type == 'anime'){
                     return `/tv/on_the_air?api_key=${apiKey}&append_to_response=media_type&include_adult=false&include_video=true&language=en-US&with_original_language=ja&with_genres=16`
                 }
                 else if(type == 'disney'){
@@ -32,12 +25,26 @@ export const tmdbApi = createApi({
                 return `/movie/${type}?page=1&api_key=${apiKey}&include_media_type=true`
             }
         }),
-        getTrendingShows: builder.query({
-            query: () => `/tv/popular?api_key=${apiKey}&append_to_response=media_type&include_adult=false&include_video=true&language=en-US&with_original_language=ko`
+
+        // get movies based on genre
+        getMoviesByGenre: builder.query({
+            query: ({type, genre, page}) => `discover/${type}?with_genres=${genre}&page=${page}&api_key=${apiKey}`
         }),
+
+
+        // made for home header
+        getTrendingShows: builder.query({
+            query: () => `/tv/popular?api_key=${apiKey}&append_to_response=media_type,videos&include_adult=false&include_video=true&language=en-US&with_original_language=ko`
+        }),
+
+
+
+        // get movie detail
         getSingleMovieDetails: builder.query({
             query: ({pathname}) => `${pathname}?append_to_response=videos,credits&api_key=${apiKey}`
         }),
+
+        // get genres
         getGenres: builder.query({
             query: ({type}) => `/genre/${type}/list?api_key=${apiKey}`
         })
@@ -50,10 +57,9 @@ export const tmdbReducer = tmdbApi.reducer
 export const tmdbMiddleware = tmdbApi.middleware
 
 export const {
-    useGetGenresForMoviesQuery,
     useGetTrendingShowsQuery,
-    useGetGenresForTvQuery,
     useGetMoviesQuery,
     useGetSingleMovieDetailsQuery,
-    useGetGenresQuery
+    useGetGenresQuery,
+    useGetMoviesByGenreQuery
 } = tmdbApi

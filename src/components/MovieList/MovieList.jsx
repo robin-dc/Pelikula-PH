@@ -32,7 +32,7 @@ const MovieList = ({type}) => {
     return dateB - dateA;
   });
 
-  const filteredMovies = type === "kdramas" ?
+  const filteredMovies = type === "kdrama" ?
                           sortedDate.filter(movie => movie.poster_path !== null) :
                           sortedDescending.filter(movie => movie.poster_path !== null)
 
@@ -73,11 +73,14 @@ const MovieList = ({type}) => {
         }}>
         <SlArrowRight/>
       </button>
-      {filteredMovies.map((movie,index) => (
-        <SwiperSlide key={index} >
+      <div className='flex overflow-x-scroll'>
+{filteredMovies.map((movie,index) => (
+        <SwiperSlide key={index} className="h-full" >
           <Movie {...movie} type={type} />
         </SwiperSlide>
       ))}
+      </div>
+
 
     </Swiper>
     </div>

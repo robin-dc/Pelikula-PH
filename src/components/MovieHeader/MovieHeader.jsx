@@ -1,6 +1,11 @@
 import { BsFillPlayFill } from 'react-icons/bs';
+import { useLocation } from 'react-router-dom';
 
 const MovieHeader = ({...data}) => {
+    let location = useLocation();
+
+    const type = location.pathname.split('/')[1];
+
     if (!data) {
         return (
             <div className='min-h-screen bg-primary flex justify-center items-center'>
@@ -21,7 +26,24 @@ const MovieHeader = ({...data}) => {
         var hours = Math.floor(minutes / 60);
         var remainingMinutes = minutes % 60;
         return hours + "h " + remainingMinutes + "min";
-      }
+    }
+
+    function addToWatchLater(){
+        const myListStorage = JSON.parse(localStorage.getItem('watchLater'));
+
+        const array = myListStorage || [];
+        array.push({...data, type});
+
+        const unique = array.reduce((accum, current) => {
+            if(!accum.some(item => item.id === current.id)){
+                accum.push(current);
+            }
+            return accum
+        }, []) // if this has an item that is equals to the current then dont push
+
+        localStorage.setItem('watchLater', JSON.stringify(unique));
+    }
+
 
   return (
     <div className="min-h-screen bg-no-repeat bg-cover w-full relative flex items-center"
@@ -50,7 +72,7 @@ const MovieHeader = ({...data}) => {
                             <BsFillPlayFill className='text-[1.5rem]'/>
                             <span>Play</span>
                         </button>
-                        <button className="button border border-gray-200">Watch Later</button>
+                        <button className="button border border-gray-200" onClick={addToWatchLater}>Watch Later</button>
                     </div>
                 </div>
             </div>

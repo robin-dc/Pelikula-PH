@@ -15,3 +15,5 @@ export {default as PeopleList} from './PeopleList/PeopleList';
 export {default as Trailer} from './Trailer/Trailer';
 export {default as Footer} from './Footer/Footer';
 export {default as Dropdown} from './Dropdown/Dropdown';
+export {default as MyList} from './MyList/MyList';
+export {default as MoviesCollection} from './MoviesCollection/MoviesCollection';

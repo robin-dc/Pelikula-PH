@@ -24,7 +24,8 @@ const Home = () => {
 
     const randomNumber = Math.floor(Math.random() * data?.results.length)
 
-    const filteredMovies = data.results.filter(movie => movie.poster_path !== null)
+    const filteredMovies = data?.results.filter(movie => movie.backdrop_path !== null || movie.overview !== '' || movie.backdrop_path !== undefined)
+
     const {backdrop_path, title, overview, release_date, name, id, media_type} = filteredMovies[randomNumber]
 
     const backgroundImage = {
@@ -32,8 +33,7 @@ const Home = () => {
     }
   return (
     <>
-
-    <Navbar/>
+        <Navbar/>
         <div className="min-h-screen bg-no-repeat bg-cover w-full relative flex items-center"
         style={backgroundImage}>
             <div className="overlay-1 absolute top-0 left-0 right-0 bottom-0">
