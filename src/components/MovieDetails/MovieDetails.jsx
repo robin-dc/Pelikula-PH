@@ -19,7 +19,7 @@ const MovieDetails = () => {
     return () => clearTimeout(timeout)
   }, [])
 
-  if (isLoading || isFetching) {
+  if (!data || isLoading || isFetching) {
     return (
         <div className='min-h-screen bg-primary flex justify-center items-center fixed top-0 bottom-0 right-0 left-0'>
             <div className="spinner relative grid place-items-center bg-secondary rounded-full h-[40px] w-[40px]">
@@ -29,12 +29,12 @@ const MovieDetails = () => {
     )
   }
 
-  if(!data){
+  if(error){
     return (
       <div className='min-h-screen bg-primary flex flex-col justify-center items-center'>
-            <p className='text-light'>No data found</p>
-            <button onClick={() => navigate(-1)}>Go back</button>
-        </div>
+          <p className='text-light'>No data found</p>
+          <button onClick={() => navigate(-1)}>Go back</button>
+      </div>
     )
   }
 

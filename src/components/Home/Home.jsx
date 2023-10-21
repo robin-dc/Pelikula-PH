@@ -24,7 +24,8 @@ const Home = () => {
 
     const randomNumber = Math.floor(Math.random() * data?.results.length)
 
-    const filteredMovies = data?.results.filter(movie => movie.backdrop_path !== null || movie.overview !== '' || movie.backdrop_path !== undefined)
+    const filteredMovies = data?.results.filter(movie => movie.backdrop_path !== null && movie.overview !== '' && movie.backdrop_path !== undefined)
+
 
     const {backdrop_path, title, overview, release_date, name, id, media_type} = filteredMovies[randomNumber]
 
