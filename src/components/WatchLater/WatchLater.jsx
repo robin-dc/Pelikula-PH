@@ -19,7 +19,7 @@ const WatchLater = () => {
             </div>
                 {!myListStorage ?
                     <div className='py-6 flex items-center justify-center'>
-                        <p className='text-light'>No data found</p>
+                        <p className='text-light'>There's no movie yet.</p>
                     </div>
                 :
                 <div className='grid grid-cols-6 py-2 px-1'>

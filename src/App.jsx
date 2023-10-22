@@ -1,4 +1,4 @@
-import { Footer, Home, Login, MovieDetails, MoviesCollection, Profiles, WatchLater } from "./components"
+import { ErrorPage, Footer, Home, Login, MovieDetails, MoviesCollection, Profiles, WatchLater } from "./components"
 import {Routes, Route} from 'react-router-dom'
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
         <Route path="movielist/:genre" element={<MoviesCollection/>}/>
         <Route path="tvlist/:genre" element={<MoviesCollection />}/>
         <Route path="movie/:id" element={<MovieDetails/>}/>
+        <Route path="*" element={<ErrorPage/>}/>
       </Routes>
       <Footer/>
     </>
