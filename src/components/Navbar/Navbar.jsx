@@ -12,7 +12,6 @@ const Navbar = () => {
 
   const path = pathname.split('/')[1]
 
-  console.log(path)
   return (
     <header className={`${isDarkNav && "bg-[#0d0c0c]" } transition duration-500 fixed top-0 left-0 right-0 z-[9999999999999]`}>
         <nav className="px-2 py-[1.4rem] pb-[1.1rem] flex justify-between items-center">
