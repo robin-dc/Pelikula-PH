@@ -49,6 +49,10 @@ export const tmdbApi = createApi({
             query: ({type}) => `/genre/${type}/list?api_key=${apiKey}`
         }),
 
+        // get person details
+        getPersonDetails: builder.query({
+            query: ({id}) => `/person/${id}?append_to_response=videos,credits&language=en-US&api_key=${apiKey}`
+        })
 
     })
 
@@ -63,5 +67,6 @@ export const {
     useGetMoviesQuery,
     useGetSingleMovieDetailsQuery,
     useGetGenresQuery,
-    useGetMoviesByGenreQuery
+    useGetMoviesByGenreQuery,
+    useGetPersonDetailsQuery
 } = tmdbApi

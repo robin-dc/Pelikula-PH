@@ -18,3 +18,4 @@ export {default as Dropdown} from './Dropdown/Dropdown';
 export {default as WatchLater} from './WatchLater/WatchLater';
 export {default as MoviesCollection} from './MoviesCollection/MoviesCollection';
 export {default as ErrorPage} from './ErrorPage/ErrorPage';
+export {default as PersonDetails} from './PersonDetails/PersonDetails';
