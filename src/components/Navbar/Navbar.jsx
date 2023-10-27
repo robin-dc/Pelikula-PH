@@ -2,7 +2,8 @@
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import {Dropdown, Menu, Search} from '..'
 import { useScroll } from '../../utils/ScrollContext'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const Navbar = () => {
   const {isDarkNav} = useScroll()
@@ -11,6 +12,9 @@ const Navbar = () => {
   const {pathname} = useLocation()
 
   const path = pathname.split('/')[1]
+
+  const myListStorage = useSelector((state) => state.LocalStorageSlice.value.length)
+
 
   return (
     <header className={`${isDarkNav && "bg-[#0d0c0c]" } transition duration-500 fixed top-0 left-0 right-0 z-[9999999999999]`}>
@@ -38,11 +42,15 @@ const Navbar = () => {
                     </div>
                 </li>
 
-                <li><NavLink to="/list" className="text-sm" style={({ isActive, isPending }) => {
+                <li><NavLink to="/list"
+                  className="text-sm relative"
+                  style={({ isActive, isPending }) => {
                     return {
                       color: isActive ? "white" : "#ffffffa1",
                     };
-                  }}>My List</NavLink></li>
+                  }}>My List
+                  <span className='text-light ml-[0.3rem] bg-[#2c2c2c] rounded-full text-[0.72rem] px-[0.55em] absolute top-[50%] translate-y-[-50%] text-center'>{myListStorage}</span>
+                  </NavLink></li>
             </ul>
             <div className='flex items-center gap-1'>
               <Search/>

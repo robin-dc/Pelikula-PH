@@ -1,9 +1,11 @@
 import { BsFillPlayFill } from 'react-icons/bs';
 import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToWatchLater } from '../../features/LocalStorageSlice';
 
 const MovieHeader = ({...data}) => {
     let location = useLocation();
-
+    const dispatch = useDispatch();
     const type = location.pathname.split('/')[1];
 
     if (!data) {
@@ -28,21 +30,21 @@ const MovieHeader = ({...data}) => {
         return hours + "h " + remainingMinutes + "min";
     }
 
-    function addToWatchLater(){
-        const myListStorage = JSON.parse(localStorage.getItem('watchLater'));
+    // function addToWatchLater(){
+    //     const myListStorage = JSON.parse(localStorage.getItem('watchLater'));
 
-        const array = myListStorage || [];
-        array.push({...data, type});
+    //     const array = myListStorage || [];
+    //     array.push({...data, type});
 
-        const unique = array.reduce((accum, current) => {
-            if(!accum.some(item => item.id === current.id)){
-                accum.push(current);
-            }
-            return accum
-        }, []) // if this has an item that is equals to the current then dont push
+    //     const unique = array.reduce((accum, current) => {
+    //         if(!accum.some(item => item.id === current.id)){
+    //             accum.push(current);
+    //         }
+    //         return accum
+    //     }, []) // if this has an item that is equals to the current then dont push
 
-        localStorage.setItem('watchLater', JSON.stringify(unique));
-    }
+    //     localStorage.setItem('watchLater', JSON.stringify(unique));
+    // }
 
 
   return (
@@ -72,7 +74,8 @@ const MovieHeader = ({...data}) => {
                             <BsFillPlayFill className='text-[1.5rem]'/>
                             <span>Play</span>
                         </button>
-                        <button className="button border border-gray-200" onClick={addToWatchLater}>Watch Later</button>
+                        <button className="button border border-gray-200"
+                        onClick={() => dispatch(addToWatchLater({data, type}))}>Watch Later</button>
                     </div>
                 </div>
             </div>

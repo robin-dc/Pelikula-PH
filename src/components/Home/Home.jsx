@@ -4,8 +4,11 @@ import {Movies, Navbar} from '..';
 import { useGetTrendingShowsQuery } from '../../services/tmdb';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToWatchLater } from '../../features/LocalStorageSlice';
 
 const Home = () => {
+    const dispatch = useDispatch()
     const {data, error, isFetching} = useGetTrendingShowsQuery()
 
     useEffect(() => {
@@ -26,11 +29,13 @@ const Home = () => {
 
     const filteredMovies = data?.results.filter(movie => movie.backdrop_path !== null && movie.backdrop_path !== undefined && movie.backdrop_path !== '' && movie.overview !== '')
 
-    const {backdrop_path, title, overview, release_date, name, id, media_type} = filteredMovies[randomNumber]
+    const randomMovie = filteredMovies[randomNumber]
+    const {backdrop_path, title, overview, release_date, name, id, media_type, first_air_date} = randomMovie
 
     const backgroundImage = {
         backgroundImage: data && `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
     }
+    console.log(randomMovie)
   return (
     <>
         <Navbar/>
@@ -48,10 +53,11 @@ const Home = () => {
                             <BsFillPlayFill className='text-[1.5rem]'/>
                             <span>Play</span>
                         </button>
-                        <button className="button border border-gray-200">Watch Later</button>
+                        <button className="button border border-gray-200"
+                        onClick={() => dispatch(addToWatchLater({data: randomMovie, type: media_type}))}>Watch Later</button>
                     </div>
                     <div className="w-[40%] py-1">
-                        <p className="text-light">Released: {release_date}</p>
+                        <p className="text-light">Released: {release_date ? release_date : first_air_date}</p>
                         <p>{overview.substring(0, 180)}...</p>
 
                     </div>

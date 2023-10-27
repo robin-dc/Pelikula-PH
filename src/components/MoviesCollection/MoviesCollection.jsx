@@ -34,7 +34,7 @@ const MoviesCollection = () => {
             </div>
         )
     }
-
+    const filteredMovies = data?.results.filter(movie => movie.poster_path !== null);
 
     return (
         <>
@@ -46,7 +46,7 @@ const MoviesCollection = () => {
                     <h3 className="text-[1.5rem] font-semibold">{genreName} {type == 'tv' ? "TV Series" : "Movies"}</h3>
                 </div>
                 <div className='grid grid-cols-6 py-2 px-1'>
-                    {data.results?.map(movie => (
+                    {filteredMovies.map(movie => (
                         <div key={movie} className='pb-2'>
                             <Movie type={type} {...movie} />
                         </div>

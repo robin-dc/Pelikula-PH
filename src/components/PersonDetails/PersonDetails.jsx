@@ -34,7 +34,8 @@ const PersonDetails = () => {
 
     const {also_known_as, biography, birthday, deathday, gender, known_for_department, name, place_of_birth, popularity, profile_path, credits: {cast}} = data
 
-    const filteredMovies = cast.filter(movie => movie.poster_path !== null)
+    const filteredMovies = cast.filter(movie => movie.poster_path !== null && movie.adult !== true)
+
     return (
         <>
             <Navbar/>

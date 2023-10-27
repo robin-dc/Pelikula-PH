@@ -9,7 +9,6 @@ export const movieCollectionReducer = createSlice({
     },
     reducers: {
         updateGenre: (state, action) => {
-            console.log(action.payload.genre);
             state.genre = action.payload.genre
             state.type = action.payload.type
         }
