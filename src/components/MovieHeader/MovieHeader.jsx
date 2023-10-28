@@ -1,5 +1,5 @@
 import { BsFillPlayFill } from 'react-icons/bs';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToWatchLater } from '../../features/LocalStorageSlice';
 
@@ -17,7 +17,7 @@ const MovieHeader = ({...data}) => {
             </div>
         )
       }
-
+      console.log(data)
     const {first_air_date, backdrop_path, genres, homepage, overview, original_language, imdb_id, popularity, poster_path, release_date, revenue, runtime, spoken_languages, status, tagline, title, videos, vote_average, vote_count, name} = data
 
     const backgroundImage = {
@@ -29,22 +29,6 @@ const MovieHeader = ({...data}) => {
         var remainingMinutes = minutes % 60;
         return hours + "h " + remainingMinutes + "min";
     }
-
-    // function addToWatchLater(){
-    //     const myListStorage = JSON.parse(localStorage.getItem('watchLater'));
-
-    //     const array = myListStorage || [];
-    //     array.push({...data, type});
-
-    //     const unique = array.reduce((accum, current) => {
-    //         if(!accum.some(item => item.id === current.id)){
-    //             accum.push(current);
-    //         }
-    //         return accum
-    //     }, []) // if this has an item that is equals to the current then dont push
-
-    //     localStorage.setItem('watchLater', JSON.stringify(unique));
-    // }
 
 
   return (
@@ -58,7 +42,15 @@ const MovieHeader = ({...data}) => {
                 <div>
                     <h1 className="text-[3rem] font-semibold">{title || name}</h1>
                     <div className="w-[43%] py-1 flex flex-col gap-[0.5rem]">
-                        <p className="text-light">Released: {release_date ? release_date : first_air_date} {runtime ? " | " + minutesToHoursAndMinutes(runtime) : ""} | {spoken_languages[0].english_name}</p>
+                        <div>
+                            <span className="text-light inline">Released: {release_date ? release_date : first_air_date}</span>
+                            <span className="text-light inline">{runtime ? " | " + minutesToHoursAndMinutes(runtime) : ""}</span>
+                            <span className="text-light inline"> | {spoken_languages[0].english_name}</span>
+                            <Link to={`https://imdb.com/title/${imdb_id}`} target='_blank' className='inline-flex ml-1 items-center gap-[0.5rem]'>
+                                <img src="/images/imdb_logo.svg" alt="imdb" />
+                                <span className='text-light'>{vote_average.toFixed(1)}</span>
+                            </Link>
+                        </div>
                         <p>{overview}</p>
                         <div className='flex gap-[0.5rem] flex-wrap'>
                         {genres.map((genre, index) => (
