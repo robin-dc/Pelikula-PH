@@ -20,7 +20,7 @@ export const tmdbApi = createApi({
                     return `/tv/on_the_air?api_key=${apiKey}&append_to_response=media_type&include_adult=false&include_video=true&language=en-US&with_original_language=ja&with_genres=16`
                 }
                 else if(type == 'disney'){
-                    return `/movie/popular?api_key=${apiKey}&append_to_response=media_type&include_adult=false&include_video=true&language=en-US&with_genres=16&with_companies=6125`
+                    return `/discover/movie?api_key=${apiKey}&append_to_response=media_type&include_adult=false&include_video=true&language=en-US&with_genres=16&with_companies=6125`
                 }
                 return `/movie/${type}?page=1&api_key=${apiKey}&include_media_type=true&include_adult=false`
             }

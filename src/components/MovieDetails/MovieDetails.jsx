@@ -1,5 +1,5 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import {Navbar, MovieHeader, PeopleList, Trailer} from '..'
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
+import {Navbar, MovieHeader, PeopleList, TrailerList} from '..'
 import { useGetSingleMovieDetailsQuery } from '../../services/tmdb'
 import { useEffect, useState } from 'react'
 
@@ -7,7 +7,9 @@ import { useEffect, useState } from 'react'
 const MovieDetails = () => {
   const navigate = useNavigate()
   const {pathname} = useLocation()
-  const {data, error, isFetching} = useGetSingleMovieDetailsQuery({pathname})
+  const newPath = pathname.split('/').filter((path, index) => index == 1 || index == 2).join('/')
+
+  const {data, error, isFetching} = useGetSingleMovieDetailsQuery({pathname: newPath})
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(()=> {
@@ -50,7 +52,8 @@ const MovieDetails = () => {
         <MovieHeader {...data}/>
         <PeopleList title={"Top Billed Cast"} data={filteredCast}/>
         <PeopleList title={"Production Cast"} data={filteredCrew}/>
-        <Trailer data={results}/>
+        <TrailerList data={results}/>
+        <Outlet/>
     </div>
   )
 }

@@ -35,7 +35,6 @@ const Home = () => {
     const backgroundImage = {
         backgroundImage: data && `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
     }
-    console.log(randomMovie)
   return (
     <>
         <Navbar/>
@@ -49,10 +48,10 @@ const Home = () => {
                 <div>
                     <h1 className="text-[3rem] font-semibold">{title || name}</h1>
                     <div className="flex gap-1">
-                        <button className="button bg-secondary flex gap-[0.3rem] items-center">
+                        <Link to={`/${media_type !== 'movie' ? 'tv' : 'movie'}/${id}/play`} className="button bg-secondary flex gap-[0.3rem] items-center">
                             <BsFillPlayFill className='text-[1.5rem]'/>
                             <span>Play</span>
-                        </button>
+                        </Link>
                         <button className="button border border-gray-200"
                         onClick={() => dispatch(addToWatchLater({data: randomMovie, type: media_type}))}>Watch Later</button>
                     </div>

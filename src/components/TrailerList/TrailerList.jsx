@@ -5,9 +5,9 @@ import {SlArrowLeft, SlArrowRight} from 'react-icons/sl'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import './Trailer.css';
+import './TrailerList.css';
 
-const Trailer = ({data}) => {
+const TrailerList = ({data}) => {
     const swiper = useSwiper();
     const [isReachEnd, setIsReachEnd] = useState(false)
     const [isReachStart, setIsReachStart] = useState(true)
@@ -95,4 +95,4 @@ const Trailer = ({data}) => {
     )
 }
 
-export default Trailer
+export default TrailerList

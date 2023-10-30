@@ -17,8 +17,8 @@ const MovieHeader = ({...data}) => {
             </div>
         )
       }
-      console.log(data)
-    const {first_air_date, backdrop_path, genres, homepage, overview, original_language, imdb_id, popularity, poster_path, release_date, revenue, runtime, spoken_languages, status, tagline, title, videos, vote_average, vote_count, name} = data
+
+      const {first_air_date, backdrop_path, genres, homepage, overview, original_language, imdb_id, popularity, poster_path, release_date, revenue, runtime, spoken_languages, status, tagline, title, videos, vote_average, vote_count, name} = data
 
     const backgroundImage = {
         backgroundImage: data && `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
@@ -53,6 +53,7 @@ const MovieHeader = ({...data}) => {
                         </div>
                         <p>{overview}</p>
                         <div className='flex gap-[0.5rem] flex-wrap'>
+                        <span className='text-light'>Genre: </span>
                         {genres.map((genre, index) => (
                             <button className="text-light button px-0 py-0 flex items-center gap-[0.4rem]" key={genre.id}>
                                 {genre.name} {index !== genres.length -1 ? "•" : ""}
@@ -62,10 +63,10 @@ const MovieHeader = ({...data}) => {
                         </div>
                     </div>
                     <div className="flex gap-1 mt-1">
-                        <button className="button bg-secondary flex gap-[0.3rem] items-center">
+                        <Link to="play" className="button bg-secondary flex gap-[0.3rem] items-center">
                             <BsFillPlayFill className='text-[1.5rem]'/>
                             <span>Play</span>
-                        </button>
+                        </Link>
                         <button className="button border border-gray-200"
                         onClick={() => dispatch(addToWatchLater({data, type}))}>Watch Later</button>
                     </div>
