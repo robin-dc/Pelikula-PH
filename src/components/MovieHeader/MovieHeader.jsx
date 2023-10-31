@@ -63,10 +63,10 @@ const MovieHeader = ({...data}) => {
                         </div>
                     </div>
                     <div className="flex gap-1 mt-1">
-                        <Link to="play" className="button bg-secondary flex gap-[0.3rem] items-center">
+                        {!videos.results.length == 0 && <Link to="play" className="button bg-secondary flex gap-[0.3rem] items-center">
                             <BsFillPlayFill className='text-[1.5rem]'/>
                             <span>Play</span>
-                        </Link>
+                        </Link>}
                         <button className="button border border-gray-200"
                         onClick={() => dispatch(addToWatchLater({data, type}))}>Watch Later</button>
                     </div>

@@ -46,7 +46,15 @@ const TrailerPlayer = () => {
 
   const {videos: {results}} = data
 
-  const trailer = results.filter(videos => videos.type == "Trailer")[0]
+  if(results.length == 0 ){
+    return (
+      isIntro &&
+      <div className="fixed transition-all ease-in-out duration-1000 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] p-1 rounded-xl bg-black border border-[#2c2c2c] z-[99999]">
+          Sorry, the video was not provided.
+      </div>
+    )
+  }
+  const trailer = results?.filter(videos => videos.type == "Trailer")[0]
 
   const { type, name, key, published_at, id } = trailer
 
@@ -69,6 +77,7 @@ const TrailerPlayer = () => {
   };
 
   return (
+
     <div className={`fixed group transition-all ease-in-out duration-1000 ${isZoomIn ? "top-0 bottom-0 left-0 right-0" : "top-[50%] rounded-xl overflow-hidden left-[50%] translate-x-[-50%] translate-y-[-50%] h-[450px] aspect-video"} z-[99999999999] rounded-sm bg-black`}>
 
     {isIntro ?
@@ -83,7 +92,7 @@ const TrailerPlayer = () => {
               className='w-full h-full'
               allow="accelerometer; autoplay; loop; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               title={`${name} | ${type}`}
-              src={`https://www.youtube.com/embed/${key}?autoplay=1&amp;mute=0&amp;&amp;controls=0&amp;playsinline=0&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=0&amp;enablejsapi=1&amp;widgetid=0"`}
+              src={`https://www.youtube.com/embed/${key}?autoplay=1&amp;mute=0&amp;loop=1&amp;controls=0&amp;playsinline=0&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=0&amp;enablejsapi=1&amp;widgetid=0"`}
               id="widget2">
             </iframe>
 
@@ -105,9 +114,9 @@ const TrailerPlayer = () => {
       )
 
     }
-      <div className={`pointer-events-none h-[50%] ${!isIntro && "hidden group-hover:block"} bg-gradient-to-t from-transparent to-black absolute top-0 right-0 left-0`}></div>
-      <div className={`pointer-events-none h-[50%] ${!isIntro && "hidden group-hover:block"} bg-gradient-to-b from-transparent to-black absolute bottom-0 right-0 left-0`}></div>
-      <div className={`w-[20%] ${!isIntro && "hidden group-hover:block"} bg-gradient-to-l from-transparent to-black absolute top-0 left-0 bottom-0`}></div>
+      <div className={`pointer-events-none h-[30%] ${!isIntro && "hidden group-hover:block"} bg-gradient-to-t from-transparent to-black absolute top-0 right-0 left-0`}></div>
+      <div className={`pointer-events-none h-[50%] ${!isIntro && "hidden"} bg-gradient-to-b from-transparent to-black absolute bottom-0 right-0 left-0`}></div>
+      <div className={`pointer-events-none w-[20%] ${!isIntro && "hidden"} bg-gradient-to-l from-transparent to-black absolute top-0 left-0 bottom-0`}></div>
 
 
       <div className='h-[13%] bg-black absolute top-0 right-0 left-0 w-full'></div>

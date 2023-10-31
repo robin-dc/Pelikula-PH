@@ -32,6 +32,7 @@ const Home = () => {
     const randomMovie = filteredMovies[randomNumber]
     const {backdrop_path, title, overview, release_date, name, id, media_type, first_air_date} = randomMovie
 
+    console.log(randomMovie)
     const backgroundImage = {
         backgroundImage: data && `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
     }

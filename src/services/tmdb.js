@@ -14,10 +14,10 @@ export const tmdbApi = createApi({
                     return `/trending/all/day?api_key=${apiKey}&include_adult=false&sort_by=vote_average.desc`
                 }
                 else if(type == 'kdrama'){
-                    return `/tv/on_the_air?api_key=${apiKey}&append_to_response=media_type&include_adult=false&include_video=true&language=en-US&with_original_language=ko`
+                    return `/discover/tv?api_key=${apiKey}&append_to_response=media_type&include_adult=false&include_video=true&language=en-US&with_original_language=ko`
                 }
                 else if(type == 'anime'){
-                    return `/tv/on_the_air?api_key=${apiKey}&append_to_response=media_type&include_adult=false&include_video=true&language=en-US&with_original_language=ja&with_genres=16`
+                    return `/discover/tv?api_key=${apiKey}&append_to_response=media_type&include_adult=false&include_video=true&language=en-US&with_original_language=ja&with_genres=16`
                 }
                 else if(type == 'disney'){
                     return `/discover/movie?api_key=${apiKey}&append_to_response=media_type&include_adult=false&include_video=true&language=en-US&with_genres=16&with_companies=6125`
