@@ -13,6 +13,7 @@ function App() {
         <Route path="list" element={<WatchLater/>}/>
         <Route path="movielist/:genre" element={<MoviesCollection/>}/>
         <Route path="tvlist/:genre" element={<MoviesCollection />}/>
+        <Route path="search/:keyword" element={<MoviesCollection />}/>
 
         <Route path="tv/:id" element={<MovieDetails/>}>
           <Route path="play" element={<TrailerPlayer/>}/>

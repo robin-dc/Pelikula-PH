@@ -12,16 +12,32 @@ const MovieDetails = () => {
   const {data, error, isFetching} = useGetSingleMovieDetailsQuery({pathname: newPath})
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(()=> {
+
+  useEffect(() => {
     const timeout = setTimeout(() => {
-      setIsLoading(false)
-      window.scrollTo(0, 0);
-    }, 1400);
+      // setIsLoading(false)
+      if(!data && newPath.split("/")[0] == "movie"){
+        navigate(`/tv/${newPath.split("/")[1]}`)
+      }
+      else if(!data && newPath.split("/")[0] == "tv"){
+        navigate(`/movie/${newPath.split("/")[1]}`)
+      }
+    }, 1000);
 
     return () => clearTimeout(timeout)
+
+  }, [data])
+
+  useEffect(()=> {
+    // const timeout = setTimeout(() => {
+    //   setIsLoading(false)
+      window.scrollTo(0, 0);
+    // }, 0);
+
+    // return () => clearTimeout(timeout)
   }, [])
 
-  if (!data || isLoading || isFetching) {
+  if (isFetching || !data) {
     return (
         <div className='min-h-screen bg-primary flex justify-center items-center fixed top-0 bottom-0 right-0 left-0'>
             <div className="spinner relative grid place-items-center bg-secondary rounded-full h-[40px] w-[40px]">
@@ -32,6 +48,8 @@ const MovieDetails = () => {
   }
 
   if(error){
+    // navigate(`/tv/${newPath.split("/")[1]}`)
+
     return (
       <div className='min-h-screen bg-primary flex flex-col justify-center items-center'>
           <p className='text-light'>No data found</p>

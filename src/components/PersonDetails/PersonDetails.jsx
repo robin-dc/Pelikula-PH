@@ -61,7 +61,7 @@ const PersonDetails = () => {
                         <h3 className="text-[1.5rem] font-semibold">{name} Movies</h3>
                     </div>
 
-                    {cast && cast.length !== 0 ?
+                    {filteredMovies && filteredMovies.length !== 0 ?
                     <Swiper
                     // install Swiper modules
                     modules={[Navigation, A11y]}
