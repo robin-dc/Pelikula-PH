@@ -37,8 +37,6 @@ export const tmdbApi = createApi({
             query: () => `/trending/all/day?api_key=${apiKey}&append_to_response=media_type,videos&include_adult=false&include_video=true&language=en-US&with_original_language=ko`
         }),
 
-
-
         // get movie detail
         getSingleMovieDetails: builder.query({
             query: ({pathname}) => `${pathname}?append_to_response=videos,credits&api_key=${apiKey}`
@@ -52,6 +50,11 @@ export const tmdbApi = createApi({
         // get person details
         getPersonDetails: builder.query({
             query: ({id}) => `/person/${id}?append_to_response=videos,credits&language=en-US&api_key=${apiKey}`
+        }),
+
+        getSearchedMovie: builder.query({
+            query: ({keyword, type}) =>
+                `/search/${type}?api_key=${apiKey}&query=${keyword}&include_adult=false&append_to_response=media_type&language=en-US&page=1`
         })
 
     })
@@ -68,5 +71,6 @@ export const {
     useGetSingleMovieDetailsQuery,
     useGetGenresQuery,
     useGetMoviesByGenreQuery,
-    useGetPersonDetailsQuery
+    useGetPersonDetailsQuery,
+    useGetSearchedMovieQuery
 } = tmdbApi
