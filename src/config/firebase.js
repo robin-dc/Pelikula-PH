@@ -10,7 +10,7 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAdVejtlE1fWa3lLIBBVFQTN6KSsNy_-jQ",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "pelikulaph-97d16.firebaseapp.com",
   projectId: "pelikulaph-97d16",
   storageBucket: "pelikulaph-97d16.appspot.com",
