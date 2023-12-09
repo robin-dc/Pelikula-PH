@@ -17,7 +17,7 @@ const ErrorPage = () => {
 
           <div>
               <p className='text-light inline '>Oops! It seems that the URL you provided was not found. </p>
-              <button onClick={() => navigate('/home')} className='inline underline'>Go back</button>
+              <button onClick={() => navigate('/')} className='inline underline'>Go back</button>
           </div>
       </div>
     )

@@ -41,14 +41,14 @@ const PersonDetails = () => {
             <Navbar/>
             <div className="container pt-9 ">
                 <div className='flex gap-2 px-5 justify-center'>
-                    <img src={profile_path !== null ? `https://www.themoviedb.org/t/p/original/${profile_path}` : "https://templateresources.usu.edu/_assets/images/directory/USU_Placeholder_Directory_AM_3.png" } alt="actor" className="w-[29%] bg-blue-300 h-fit hover:shadow-2xl hover:shadow-[#38383854] rounded-md" loading="lazy" title={name}/>
+                    <img src={profile_path !== null ? `https://www.themoviedb.org/t/p/original/${profile_path}` : "https://templateresources.usu.edu/_assets/images/directory/USU_Placeholder_Directory_AM_3.png" } alt="actor" className="w-[29%] bg-[#7e7e7e44] h-fit hover:shadow-2xl hover:shadow-[#38383854] rounded-md" loading="lazy" title={name}/>
                     <div className=''>
                         <h3 className="text-[3.5rem] font-semibold">{name}</h3>
-                        <p>Also known as: <span className='text-light'>{also_known_as.join(" • ")}</span></p>
+                        <p>Also known as: <span className='text-light'>{also_known_as ? also_known_as.join(" • ") : "N/A"}</span></p>
                         <p>Birthdate: <span className='text-light'>{birthday} {deathday && " to " + deathday}</span></p>
-                        <p>Birthplace: <span className='text-light'>{place_of_birth}</span></p>
-                        <p>Gender: <span className='text-light'>{gender == 1? "Female" : "Male"}</span></p>
-                        <p>Known for: <span className='text-light'>{known_for_department}</span></p>
+                        <p>Birthplace: <span className='text-light'>{place_of_birth ? place_of_birth : "N/A"}</span></p>
+                        <p>Gender: <span className='text-light'>{gender == 1 ? "Female" : "Male"}</span></p>
+                        <p>Known for: <span className='text-light'>{known_for_department ? known_for_department : "N/A"}</span></p>
                         <p>Popularity: <span className='text-light'>{popularity.toFixed(1)}%</span></p>
                         <p className='text-gray-300 mt-2'>{biography}</p>
                     </div>

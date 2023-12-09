@@ -1,7 +1,9 @@
 export {default as Navbar} from './Navbar/Navbar';
 export {default as Home} from './Home/Home';
 export {default as Search} from './Search/Search';
-export {default as Login} from './Login/Login';
+export {default as SignIn} from './Authentication/SignIn';
+export {default as SignUp} from './Authentication/SignUp';
+export {default as Protected} from './Authentication/Protected';
 export {default as Profiles} from './Profiles/Profiles';
 export {default as Menu} from './Menu/Menu';
 export {default as Movies} from './Movies/Movies';

@@ -38,7 +38,7 @@ const localStorageReducer = createSlice({
             state.value = updatedArray;
         },
         removeAllWatchList: (state, action) => {
-            localStorage.clear();
+            localStorage.removeItem("watchLater");
             state.value = [];
         }
     }

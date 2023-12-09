@@ -42,8 +42,6 @@ const Search = () => {
   return () => clearTimeout(timeout)
   }, [keyword])
 
-  console.log(searchType)
-  console.log(data)
 
   const suggestions = data?.results.filter(movie => movie.poster_path !== null).slice(0, 10)
 
@@ -74,7 +72,7 @@ const Search = () => {
         }
 
         {data?.results.length !== 0 && keyword !== "" &&
-          <div className='suggestions overflow-y-scroll w-full max-h-[300px] absolute top-[3.5rem] left-0 flex flex-col divide-y-[1px] divide-[#303030af] border-2 border-[#303030af] bg-black rounded-lg px-1 py-[1.5rem] text-[0.9rem]'>
+          <div className='suggestions overflow-y-scroll overflow-x-hidden w-full max-h-[300px] absolute top-[3.5rem] left-0 flex flex-col divide-y-[1px] divide-[#303030af] border-2 border-[#303030af] bg-black rounded-lg px-1 py-[1.5rem] text-[0.9rem]'>
             {suggestions?.map((suggestion,index) => (
               <Link to={`/${searchType}/${suggestion.id}`}
                     key={index}
@@ -82,7 +80,18 @@ const Search = () => {
                     onClick={() => setKeyword("")}
               >
                 <img src={`https://www.themoviedb.org/t/p/original/${suggestion.poster_path}`}  alt="movie poster" className="w-2"/>
-                <h3 className='truncate'>{suggestion.title || suggestion.name}</h3>
+                <div>
+                  <h3 className='truncate w-4/5'>{suggestion.title || suggestion.name}</h3>
+                  <div className='flex gap-[0.4rem] items-center'>
+                    <small className='text-light'>
+                      {suggestion.release_date?.split('-')[0] || suggestion.first_air_date?.split('-')[0]}
+                    </small>
+                    <small className="text-light flex gap-[0.2rem] items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="20" viewBox="0 0 24 24" fill="none" stroke="#f1c40f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                      {suggestion.popularity.toFixed(1)}%
+                    </small>
+                  </div>
+                </div>
               </Link>
             ))}
           </div>

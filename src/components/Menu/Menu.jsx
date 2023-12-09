@@ -2,13 +2,24 @@ import { useEffect, useState } from 'react'
 import {IoIosArrowDown} from 'react-icons/io'
 import {AiOutlineUserSwitch} from 'react-icons/ai'
 import {GoSignOut} from 'react-icons/go'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useScroll } from '../../utils/ScrollContext'
+import { logOut } from '../../config/firebase'
 
 
 const Menu = () => {
+    const navigate = useNavigate()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const {isScrolled} = useScroll()
+    const [photoURL, setPhotoURL] = useState(null)
+    const [name, setName] = useState(null)
+
+    useEffect(() => {
+      const userData = JSON.parse(localStorage.getItem('userData'))
+
+      setPhotoURL(userData?.photoURL)
+      setName(userData?.displayName)
+    }, [])
 
     useEffect(() => {
         setIsDropdownOpen(false)
@@ -28,6 +39,13 @@ const Menu = () => {
         e.stopPropagation()
         setIsDropdownOpen(prevState => !prevState)
     }
+
+    const handleSignout = () => {
+        localStorage.removeItem("userData")
+        localStorage.removeItem("token")
+        logOut()
+        navigate("/signin")
+    }
   return (
     <div className='relative'>
         <div className="flex gap-[0.5rem] items-center cursor-pointer" onClick={toggleDropdown}>
@@ -38,18 +56,18 @@ const Menu = () => {
         {isDropdownOpen && <div className='border-2 border-[#303030af] bg-black rounded-lg absolute mt-1 right-0 min-w-[230px] text-[0.9rem]'>
            <div className=' py-[1.5rem] flex flex-col gap-[1.5rem]'>
             <div className='w-full px-[1.5rem] flex gap-[0.6rem] items-center'>
-                <img src="https://robin-dc.github.io/Facebook-UI-Clone/images/robin.png" alt="user" className='w-[1.8rem] rounded-full' />
-                <p>Dela Cruz, Robin T.</p>
+                <img src={photoURL ? photoURL : "/images/user-1.jpg"} alt="user" className='w-[1.8rem] rounded-full' />
+                <p>{name}</p>
             </div>
-            <Link to='/profiles' className='w-full px-[1.5rem] flex gap-[0.6rem] items-center'>
+            <Link to='/' className='w-full px-[1.5rem] flex gap-[0.6rem] items-center'>
                 <AiOutlineUserSwitch className='text-[1.5rem]'/>
                 <p>Switch Profiles</p>
             </Link>
         </div>
-            <Link to='/signin' className='w-full p-[1.5rem] flex gap-[0.6rem] items-center border-t-[1px] border-[#7c7c7c59]'>
+            <button onClick={handleSignout} className='w-full p-[1.5rem] flex gap-[0.6rem] items-center border-t-[1px] border-[#7c7c7c59]'>
                 <GoSignOut className='text-[1.5rem]'/>
                 <p>Sign out to Pelikula</p>
-            </Link>
+            </button>
         </div>}
 
     </div>
