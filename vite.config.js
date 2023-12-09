@@ -10,9 +10,5 @@ export default defineConfig({
   server: {
     host: "localhost",
     port: 3000
-  },
-  define: {
-    'import.meta.env.VITE_FIREBASE_API_KEY': process.env.VITE_FIREBASE_API_KEY,
-    'import.meta.env.VITE_API_TMDB_KEY': process.env.VITE_API_TMDB_KEY,
-  },
+  }
 })
