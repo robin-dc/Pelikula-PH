@@ -11,6 +11,16 @@ import {
     updateProfile
 } from 'firebase/auth';
 
+import {
+    addDoc,
+    collection,
+    deleteDoc,
+    doc,
+    getDocs,
+    getFirestore
+} from 'firebase/firestore';
+
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "pelikulaph-97d16.firebaseapp.com",
@@ -24,6 +34,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 const googleProvider = new GoogleAuthProvider()
 
@@ -69,6 +80,29 @@ export const signInWithCredentials = async (email, password) => {
     }
 }
 
+// CUSTOM FIRESTORE HOOKS
+const fireStoreRef = collection(db, 'movies');
+
+export const fetchData = async () => {
+    const data = await getDocs(fireStoreRef)
+    const transformedData = data.docs.map(doc => ({...doc.data(), id: doc.id}))
+
+    return transformedData
+}
+
+export const addToWatchLater = async (movie) => {
+    await addDoc(fireStoreRef, {
+        ...movie,
+        author: {
+            name: auth?.currentUser?.displayName,
+            id: auth?.currentUser?.uid
+        }})
+}
+
+export const removeToWatchLater = async (movieId) => {
+    const movie = doc(db, "movies", movieId)
+    await deleteDoc(movie)
+}
 export const logOut = async () => {
     await signOut(auth)
 }

@@ -1,12 +1,18 @@
 import { BsFillPlayFill } from 'react-icons/bs';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addToWatchLater } from '../../features/LocalStorageSlice';
+import { addToWatchLater, fetchData } from '../../config/firebase';
+import { setList } from '../../features/FireStoreSlice';
 
 const MovieHeader = ({...data}) => {
     let location = useLocation();
     const dispatch = useDispatch();
     const type = location.pathname.split('/')[1];
+
+    const fetch = async() => {
+        const data = await fetchData()
+        dispatch(setList(data))
+    }
 
     if (!data) {
         return (
@@ -16,9 +22,9 @@ const MovieHeader = ({...data}) => {
                 </div>
             </div>
         )
-      }
+    }
 
-      const {first_air_date, backdrop_path, genres, homepage, overview, original_language, imdb_id, popularity, poster_path, release_date, revenue, runtime, spoken_languages, status, tagline, title, videos, vote_average, vote_count, name} = data
+    const {first_air_date, backdrop_path, genres, homepage, overview, original_language, imdb_id, popularity, poster_path, release_date, revenue, runtime, spoken_languages, status, tagline, title, videos, vote_average, vote_count, name} = data
 
     const backgroundImage = {
         backgroundImage: data && `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
@@ -30,7 +36,10 @@ const MovieHeader = ({...data}) => {
         return hours + "h " + remainingMinutes + "min";
     }
 
-
+    const addToList = (data, type) => {
+        addToWatchLater({data, type})
+        fetch()
+    }
   return (
     <div className="min-h-screen bg-no-repeat bg-cover w-full relative flex items-center"
         style={backgroundImage}>
@@ -68,7 +77,7 @@ const MovieHeader = ({...data}) => {
                             <span>Play</span>
                         </Link>}
                         <button className="button border border-gray-200"
-                        onClick={() => dispatch(addToWatchLater({data, type}))}>Watch Later</button>
+                        onClick={() => addToList(data, type)}>Watch Later</button>
                     </div>
                 </div>
             </div>

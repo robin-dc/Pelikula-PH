@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { tmdbReducer, tmdbReducerPath, tmdbMiddleware } from "../services/tmdb";
 import movieCollectionReducer from "../features/MovieCollectionSlice";
-import localStorageReducer from "../features/LocalStorageSlice";
+import fireStoreReducer from "../features/FireStoreSlice";
 
 const store = configureStore({
     reducer: {
         [tmdbReducerPath]: tmdbReducer,
         MovieCollectionSlice: movieCollectionReducer,
-        LocalStorageSlice: localStorageReducer
+        FireStoreSlice: fireStoreReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(tmdbMiddleware)
 })

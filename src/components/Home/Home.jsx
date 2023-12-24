@@ -5,15 +5,27 @@ import { useGetTrendingShowsQuery } from '../../services/tmdb';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { addToWatchLater } from '../../features/LocalStorageSlice';
+import { addToWatchLater, fetchData } from '../../config/firebase';
+import { setList } from '../../features/FireStoreSlice';
 
 const Home = () => {
     const dispatch = useDispatch()
     const {data, error, isFetching} = useGetTrendingShowsQuery()
 
+    const fetch = async() => {
+        const data = await fetchData()
+        dispatch(setList(data))
+    }
+
     useEffect(() => {
-      window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
+        fetch()
     }, [])
+
+    const addToList = (randomMovie, media_type) => {
+        addToWatchLater({data: randomMovie, type: media_type})
+        fetch()
+    }
 
     if (!data) {
         return (
@@ -38,7 +50,7 @@ const Home = () => {
   return (
     <>
         <Navbar/>
-        <div className="min-h-screen bg-no-repeat bg-cover w-full relative flex items-center"
+        <div className="px-1 md:px-0 min-h-screen bg-no-repeat bg-center md:bg-top bg-cover w-full relative flex items-center"
         style={backgroundImage}>
             <div className="overlay-1 absolute top-0 left-0 right-0 bottom-0">
             </div>
@@ -46,24 +58,24 @@ const Home = () => {
             </div>
             <div className='container z-[1]'>
                 <div>
-                    <h1 className="text-[3rem] font-semibold">{title || name}</h1>
-                    <div className="flex gap-1">
-                        <Link to={`/${media_type !== 'movie' ? 'tv' : 'movie'}/${id}/play`} className="button bg-secondary flex gap-[0.3rem] items-center">
-                            <BsFillPlayFill className='text-[1.5rem]'/>
-                            <span>Play</span>
+                    <h1 className="text-[2rem] md:text-[3rem] font-semibold">{title || name}</h1>
+                    <div className="flex gap-[0.6rem] md:gap-1">
+                        <Link to={`/${media_type !== 'movie' ? 'tv' : 'movie'}/${id}/play`} className="button bg-secondary flex gap-[0.1rem] md:gap-[0.3rem] items-center">
+                            <BsFillPlayFill className='text-[1.2rem] md:text-[1.5rem]'/>
+                            <span className='text-[0.9rem] md:text-base'>Play</span>
                         </Link>
-                        <button className="button border border-gray-200"
-                        onClick={() => dispatch(addToWatchLater({data: randomMovie, type: media_type}))}>Watch Later</button>
+                        <button className="button border border-gray-200 text-[0.9rem] md:text-base"
+                        onClick={() => addToList(randomMovie, media_type)}>Watch Later</button>
                     </div>
-                    <div className="w-[40%] py-1">
-                        <p className="text-light">Released: {release_date ? release_date : first_air_date}</p>
-                        <p>{overview.substring(0, 180)}...</p>
+                    <div className="md:w-[40%] py-1">
+                        <p className="text-light text-[0.85rem] md:text-base">Released: {release_date ? release_date : first_air_date}</p>
+                        <p className='text-[0.9rem] md:text-base'>{overview.substring(0, 180)}...</p>
 
                     </div>
                     <button className="button border border-gray-200 px-1">
-                        <Link to={`/${media_type !== 'movie' ? 'tv' : 'movie'}/${id}`} className='flex items-center gap-[0.4rem]'>
-                            <FaInfoCircle className='text-[1.1rem]'/>
-                            <span>More Details</span>
+                        <Link to={`/${media_type !== 'movie' ? 'tv' : 'movie'}/${id}`} className='flex items-center gap-[0.3rem] md:gap-[0.4rem]'>
+                            <FaInfoCircle className='text-[1rem] md:text-[1.1rem]'/>
+                            <span className='text-[0.9rem] md:text-base'>More Details</span>
                         </Link>
 
                     </button>

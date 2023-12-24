@@ -1,19 +1,40 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Movie, Navbar } from '..';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeAllWatchList, removeToWatchLater } from '../../features/LocalStorageSlice'
 import { LiaTimesSolid } from 'react-icons/lia'
-
+import { setList } from '../../features/FireStoreSlice';
+import { fetchData, removeToWatchLater } from '../../config/firebase';
 
 const WatchLater = () => {
+    const [isLoading, setIsLoading] = useState(false)
     const dispatch = useDispatch();
 
+    const fetch = async() => {
+        const data = await fetchData()
+        dispatch(setList(data))
+    }
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        fetch()
     }, [])
 
-    const myListStorage = useSelector((state) => state.LocalStorageSlice.value)
+    const data = useSelector((state) => state.FireStoreSlice.value)
+
+    const handleDelete = async (movieId) => {
+        await removeToWatchLater(movieId)
+        fetch()
+    }
+
+    const removeAllWatchList = async() => {
+        setIsLoading(true)
+        for(let i = 0; i < data.length; i++){
+            await removeToWatchLater(data[i].id)
+        }
+        fetch()
+        setIsLoading(true)
+    }
+
     return (
         <>
           <Navbar/>
@@ -23,21 +44,28 @@ const WatchLater = () => {
                     <span className='h-[2.5rem] w-[0.4rem] bg-secondary'></span>
                     <h3 className="text-[1.5rem] font-semibold">Watch Later</h3>
                 </div>
-                {myListStorage.length !== 0 && <button className='button border border-gray-200' onClick={() => dispatch(removeAllWatchList())}>Remove All</button>}
+                {data?.length !== 0 &&
+                    <button
+                        className='button border border-gray-200 active:scale-[0.9]'
+                        onClick={removeAllWatchList}
+                        disabled={isLoading}
+                    >
+                        {isLoading ? "Removing..." : "Remove All"}
+                    </button>}
             </div>
 
-                {myListStorage.length == 0 ?
+                {data?.length == 0 ?
                     <div className='py-6 flex items-center justify-center'>
                         <p className='text-light'>There's no movie here.</p>
                     </div>
                 :
                 <div className='grid grid-cols-6 py-2 px-1'>
-                    {myListStorage?.map((movie,index) => (
+                    {data?.map((movie,index) => (
                         <div key={index} className='pb-2 relative group '>
-                            <button onClick={() => dispatch(removeToWatchLater({id: movie.id, name: movie.name || movie.title}))} className='scale-0 group-hover:scale-100 transition-all duration-300 hover:bg-[#414141f5] absolute right-[-0.2rem] top-[-0.9rem] bg-[#2c2c2cf5] rounded-full p-[6px] z-10'>
+                            <button onClick={() => handleDelete(movie.id)} className='scale-0 group-hover:scale-100 transition-all duration-300 hover:bg-[#414141f5] absolute right-[-0.2rem] top-[-0.9rem] bg-[#2c2c2cf5] rounded-full p-[6px] z-10'>
                                 <LiaTimesSolid className='text-[1.1rem]'/>
                             </button>
-                            <Movie type={movie.type} {...movie} />
+                            <Movie type={movie.type} {...movie.data} />
                         </div>
                     ))}
                 </div>
