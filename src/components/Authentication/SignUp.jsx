@@ -1,10 +1,12 @@
 import { Link, useNavigate } from "react-router-dom"
 import { signInWithGoogle, signUpWithCredentials } from "../../config/firebase"
 import { useForm } from "react-hook-form"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { Loader } from '..'
 
 const SignUp = () => {
     const token = localStorage.getItem("token")
+    const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
 
     const {
@@ -30,14 +32,16 @@ const SignUp = () => {
     }, [])
 
     const authenticate = async (formValues) => {
+        setIsLoading(true)
         try {
             const user = await signUpWithCredentials(getValues("name"), formValues.email, formValues.password)
-            console.log(user)
             if (user) {
+                setIsLoading(false)
                 navigate("/")
             }
             reset()
         } catch (error) {
+            setIsLoading(false)
             if (error.code === "auth/email-already-in-use") {
                 setError("email", {
                     type: "custom",
@@ -63,11 +67,11 @@ const SignUp = () => {
         </div>
         <header className="fixed top-0 left-0 right-0 p-2">
             <nav>
-                <img src="/images/pelikulaph.png" className="w-10 h-fit" alt="logo" />
+                <img src="/images/pelikulaph.png" className="w-9 md:w-10 h-fit" alt="logo" />
             </nav>
         </header>
-        <div className="z-10 ">
-            <div className="w-[28rem] max-w-md bg-[#000000c7] p-3 rounded-lg">
+        <div className="z-10 px-1 py-2 mt-3">
+            <div className="max-w-[28rem] bg-[#000000c7] p-2 md:p-3 rounded-lg">
                 <h1 className="text-[2.3rem] font-semibold mb-2">Sign Up, It's Free</h1>
 
                 <form
@@ -113,7 +117,7 @@ const SignUp = () => {
                             {...register("password", {
                                 required: "Password is required",
                                 validate: (fieldValue) => {
-                                    return fieldValue.length == 8 || "Password must be at least 8 characters long"
+                                    return fieldValue.length >= 8 || "Password must be at least 8 characters long"
                                 }
                             })}
                         />
@@ -121,10 +125,10 @@ const SignUp = () => {
                     {errors.password && <small className="leading-[0px] text-secondary">{errors.password.message}</small>}
 
                     <button
-                        className={`${token ? "bg-gray-500" : "bg-secondary"} font-semibold rounded-md py-[0.7rem]`}
-                        disabled={token}
+                        className={`${token || isLoading ? "bg-gray-500" : "bg-secondary"} font-semibold rounded-md py-[0.7rem]`}
+                        disabled={token || isLoading}
                     >
-                        Register
+                        {isLoading ? <Loader/> : "Register"}
                     </button>
                 </form>
 
@@ -140,13 +144,17 @@ const SignUp = () => {
                             <img src="/images/github.svg" alt="github icon" />
                         </button>
                     </div>
-                   <p className=" text-gray-400 text-center font-light lato-font">
-                   Already have an account in Pelikula PH?
-                   <Link to="/signin" className="font-medium text-white">&nbsp; Sign In</Link>
-                   </p>
+                    <div className="flex flex-col items-center">
+                        <p className=" text-gray-400 font-light lato-font">
+                            Already have an account in Pelikula PH?
+                        </p>
+                        <p>
+                          <Link to="/signin" className="font-medium text-white ">&nbsp; Sign In</Link>
+                        </p>
+
+                    </div>
+
                 </div>
-
-
             </div>
         </div>
 

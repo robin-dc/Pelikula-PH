@@ -50,7 +50,7 @@ const Search = () => {
         <input
           type="text"
           placeholder="Search"
-          className="px-[0.9rem] bg-transparent outline-none"
+          className="px-[0.9rem] bg-transparent outline-none w-full"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           onKeyPress={handleKeyPress}
@@ -72,7 +72,7 @@ const Search = () => {
         }
 
         {data?.results.length !== 0 && keyword !== "" &&
-          <div className='suggestions overflow-y-scroll overflow-x-hidden w-full max-h-[300px] absolute top-[3.5rem] left-0 flex flex-col divide-y-[1px] divide-[#303030af] border-2 border-[#303030af] bg-black rounded-lg px-1 py-[1.5rem] text-[0.9rem]'>
+          <div className='md:suggestions overflow-y-scroll overflow-x-hidden w-full max-h-[300px] absolute top-[3.5rem] left-0 flex flex-col divide-y-[1px] divide-[#303030af] border-2 border-[#303030af] bg-black rounded-lg px-1 py-[1.5rem] text-[0.9rem]'>
             {suggestions?.map((suggestion,index) => (
               <Link to={`/${searchType}/${suggestion.id}`}
                     key={index}
@@ -81,7 +81,7 @@ const Search = () => {
               >
                 <img src={`https://www.themoviedb.org/t/p/original/${suggestion.poster_path}`}  alt="movie poster" className="w-2"/>
                 <div>
-                  <h3 className='truncate w-4/5'>{suggestion.title || suggestion.name}</h3>
+                  <h3 className='truncate w-4/5 overflow-hidden' title={suggestion.title || suggestion.name}>{suggestion.title || suggestion.name}</h3>
                   <div className='flex gap-[0.4rem] items-center'>
                     <small className='text-light'>
                       {suggestion.release_date?.split('-')[0] || suggestion.first_air_date?.split('-')[0]}

@@ -7,13 +7,16 @@ import ScrollProvider from './utils/ScrollContext.jsx'
 import { Provider } from 'react-redux'
 
 import store from './app/store.js'
+import ScreenProvider from './utils/ScreenSizeContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <ScrollProvider>
-          <App />
+          <ScreenProvider>
+            <App />
+          </ScreenProvider>
         </ScrollProvider>
       </BrowserRouter>
     </Provider>

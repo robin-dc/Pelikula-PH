@@ -1,11 +1,13 @@
 import { Link, useNavigate } from "react-router-dom"
 import { signInWithGoogle, signInWithCredentials } from "../../config/firebase"
 import { useForm } from "react-hook-form"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { Loader } from '..'
 
 const SignIn = () => {
     const token = localStorage.getItem("token")
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
 
     const {
         register,
@@ -28,14 +30,16 @@ const SignIn = () => {
     }, [])
 
     const authenticate = async (formValues) => {
+        setIsLoading(true)
         try {
             const user = await signInWithCredentials(formValues.email, formValues.password)
-            console.log(user)
             if (user) {
+                setIsLoading(false)
                 navigate("/")
             }
             reset()
         } catch (error) {
+            setIsLoading(false)
             if (error.code === "auth/invalid-login-credentials") {
                 setError("password", {
                     type: "custom",
@@ -48,9 +52,13 @@ const SignIn = () => {
     }
 
     const authenticateWithGoogle = async () => {
-        const user = await signInWithGoogle()
-        if (user) {
-            navigate("/")
+        try {
+            const user = await signInWithGoogle()
+            if (user) {
+                navigate("/")
+            }
+        } catch (error) {
+            console.error("Authentication failed with error:", error.message);
         }
     }
 
@@ -60,11 +68,12 @@ const SignIn = () => {
         </div>
         <header className="fixed top-0 left-0 right-0 p-2">
             <nav>
-                <img src="/images/pelikulaph.png" className="w-10 h-fit" alt="logo" />
+                <img src="/images/pelikulaph.png" className="w-9 md:w-10 h-fit" alt="logo" />
             </nav>
         </header>
-        <div className="z-10 ">
-            <div className="w-[28rem] max-w-md bg-[#000000c7] p-3 rounded-lg">
+
+        <div className="z-10 px-1 py-2 mt-3">
+            <div className="max-w-[28rem] bg-[#000000c7] p-2 md:p-3 rounded-lg">
                 <h1 className="text-[2.3rem] font-semibold mb-2">Sign In</h1>
 
                 <form
@@ -101,10 +110,10 @@ const SignIn = () => {
                     {errors.password && <small className="leading-[0px] text-secondary">{errors.password.message}</small>}
 
                     <button
-                        className={`${token ? "bg-gray-500" : "bg-secondary"} font-semibold rounded-md py-[0.7rem]`}
-                        disabled={token}
+                        className={`${token || isLoading ? "bg-gray-500" : "bg-secondary"} font-semibold rounded-md py-[0.7rem]`}
+                        disabled={token || isLoading}
                     >
-                        Sign In
+                        {isLoading ? <Loader/> : "Sign In"}
                     </button>
                 </form>
 

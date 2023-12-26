@@ -5,6 +5,8 @@ import {GoSignOut} from 'react-icons/go'
 import { Link, useNavigate } from 'react-router-dom'
 import { useScroll } from '../../utils/ScrollContext'
 import { logOut } from '../../config/firebase'
+import { useDispatch } from 'react-redux'
+import { removeList } from '../../features/FireStoreSlice'
 
 
 const Menu = () => {
@@ -13,6 +15,7 @@ const Menu = () => {
     const {isScrolled} = useScroll()
     const [photoURL, setPhotoURL] = useState(null)
     const [name, setName] = useState(null)
+    const dispatch = useDispatch()
 
     useEffect(() => {
       const userData = JSON.parse(localStorage.getItem('userData'))
@@ -44,17 +47,18 @@ const Menu = () => {
         localStorage.removeItem("userData")
         localStorage.removeItem("token")
         logOut()
+        dispatch(removeList())
         navigate("/signin")
     }
   return (
     <div className='relative'>
-        <div className="flex gap-[0.5rem] items-center cursor-pointer" onClick={toggleDropdown}>
-            <img src="/images/default-red.png" alt="users" className='rounded-md w-[2.5rem]'/>
-            <IoIosArrowDown className={`${isDropdownOpen && "rotate-[180deg]"} transition-all duration-200 text-[1.2rem]`}/>
+        <div className="flex gap-[0.3rem] md:gap-[0.5rem] items-center cursor-pointer" onClick={toggleDropdown}>
+            <img src="/images/default-red.png" alt="users" className='rounded-md w-[2.1rem] md:w-[2.5rem]'/>
+            <IoIosArrowDown className={`${isDropdownOpen && "rotate-[180deg]"} transition-all duration-200 text-[1rem] md:text-[1.2rem]`}/>
         </div>
 
         {isDropdownOpen && <div className='border-2 border-[#303030af] bg-black rounded-lg absolute mt-1 right-0 min-w-[230px] text-[0.9rem]'>
-           <div className=' py-[1.5rem] flex flex-col gap-[1.5rem]'>
+           <div className='py-[1.5rem] flex flex-col gap-[1.5rem]'>
             <div className='w-full px-[1.5rem] flex gap-[0.6rem] items-center'>
                 <img src={photoURL ? photoURL : "/images/user-1.jpg"} alt="user" className='w-[1.8rem] rounded-full' />
                 <p>{name}</p>

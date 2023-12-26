@@ -58,7 +58,7 @@ const Home = () => {
             </div>
             <div className='container z-[1]'>
                 <div>
-                    <h1 className="text-[2rem] md:text-[3rem] font-semibold">{title || name}</h1>
+                    <h1 className="text-[2.3rem] md:text-[3rem] leading-[2.5rem] mb-1 md:leading-normal font-semibold">{title || name}</h1>
                     <div className="flex gap-[0.6rem] md:gap-1">
                         <Link to={`/${media_type !== 'movie' ? 'tv' : 'movie'}/${id}/play`} className="button bg-secondary flex gap-[0.1rem] md:gap-[0.3rem] items-center">
                             <BsFillPlayFill className='text-[1.2rem] md:text-[1.5rem]'/>

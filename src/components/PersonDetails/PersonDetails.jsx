@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import Navbar from '../Navbar/Navbar';
 import Movie from '../Movie/Movie';
+import { useScreen } from '../../utils/ScreenSizeContext';
 
 const PersonDetails = () => {
     const swiper = useSwiper();
@@ -17,6 +18,7 @@ const PersonDetails = () => {
     const {id} = useParams()
     const {data, error, isFetching} = useGetPersonDetailsQuery({id})
 
+  const { width } = useScreen()
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -39,18 +41,18 @@ const PersonDetails = () => {
     return (
         <>
             <Navbar/>
-            <div className="container pt-9 ">
-                <div className='flex gap-2 px-5 justify-center'>
-                    <img src={profile_path !== null ? `https://www.themoviedb.org/t/p/original/${profile_path}` : "https://templateresources.usu.edu/_assets/images/directory/USU_Placeholder_Directory_AM_3.png" } alt="actor" className="w-[29%] bg-[#7e7e7e44] h-fit hover:shadow-2xl hover:shadow-[#38383854] rounded-md" loading="lazy" title={name}/>
+            <div className="container pt-9 px-[1.3rem] md:px-0">
+                <div className='flex flex-col md:flex-row gap-2 md:px-5 justify-center'>
+                    <img src={profile_path !== null ? `https://www.themoviedb.org/t/p/original/${profile_path}` : "https://templateresources.usu.edu/_assets/images/directory/USU_Placeholder_Directory_AM_3.png" } alt="actor" className="md:sticky md:top-6 md:w-[29%] bg-[#7e7e7e44] h-fit hover:shadow-2xl hover:shadow-[#38383854] rounded-md mx-2" loading="lazy" title={name}/>
                     <div className=''>
-                        <h3 className="text-[3.5rem] font-semibold">{name}</h3>
-                        <p>Also known as: <span className='text-light'>{also_known_as ? also_known_as.join(" • ") : "N/A"}</span></p>
-                        <p>Birthdate: <span className='text-light'>{birthday} {deathday && " to " + deathday}</span></p>
-                        <p>Birthplace: <span className='text-light'>{place_of_birth ? place_of_birth : "N/A"}</span></p>
-                        <p>Gender: <span className='text-light'>{gender == 1 ? "Female" : "Male"}</span></p>
-                        <p>Known for: <span className='text-light'>{known_for_department ? known_for_department : "N/A"}</span></p>
-                        <p>Popularity: <span className='text-light'>{popularity.toFixed(1)}%</span></p>
-                        <p className='text-gray-300 mt-2'>{biography}</p>
+                        <h3 className="text-[2rem] md:text-[3.5rem] font-semibold">{name}</h3>
+                        <p className='text-[0.9rem] md:text-base'>Also known as: <span className='text-light text-[0.9rem] md:text-base'>{also_known_as ? also_known_as.join(" • ") : "N/A"}</span></p>
+                        <p className='text-[0.9rem] md:text-base'>Birthdate: <span className='text-light text-[0.9rem] md:text-base'>{birthday} {deathday && " to " + deathday}</span></p>
+                        <p className='text-[0.9rem] md:text-base'>Birthplace: <span className='text-light text-[0.9rem] md:text-base'>{place_of_birth ? place_of_birth : "N/A"}</span></p>
+                        <p className='text-[0.9rem] md:text-base'>Gender: <span className='text-light text-[0.9rem] md:text-base'>{gender == 1 ? "Female" : "Male"}</span></p>
+                        <p className='text-[0.9rem] md:text-base'>Known for: <span className='text-light text-[0.9rem] md:text-base'>{known_for_department ? known_for_department : "N/A"}</span></p>
+                        <p className='text-[0.9rem] md:text-base'>Popularity: <span className='text-light text-[0.9rem] md:text-base'>{popularity.toFixed(1)}%</span></p>
+                        <p className='text-gray-300 mt-2 text-[0.9rem] md:text-base'>{biography}</p>
                     </div>
 
                 </div>
@@ -66,13 +68,13 @@ const PersonDetails = () => {
                     // install Swiper modules
                     modules={[Navigation, A11y]}
                     spaceBetween={0}
-                    slidesPerView={6}
+                    slidesPerView={width < 700 ? 4 : 6}
                     navigation={{
                         prevEl: '.custom-prev-button',
                         nextEl: '.custom-next-button',
                         }}
                         effect='fade'
-                    className='z-0 py-2 px-1 relative group'
+                    className='z-0 py-2 md:px-1 relative group'
                     onReachEnd={() => setIsReachEnd(true)}
                     onReachBeginning={() => {
                         setIsReachEnd(false)

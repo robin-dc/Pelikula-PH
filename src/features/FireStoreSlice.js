@@ -12,8 +12,11 @@ const fireStoreReducer = createSlice({
             const data = action.payload
             const filteredData = data.filter(movie => movie.author.id === auth.currentUser.uid)
             state.value = filteredData
+        },
+        removeList: (state) => {
+            state.value = []
         }
     }
 })
-export const { setList, removeAllWatchList, removeToWatchLater } = fireStoreReducer.actions;
+export const { setList, removeList} = fireStoreReducer.actions;
 export default fireStoreReducer.reducer;

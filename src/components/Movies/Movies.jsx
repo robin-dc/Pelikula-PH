@@ -4,7 +4,7 @@ import {MovieList} from ".."
 const Movies = () => {
 
   return (
-    <div className="container py-1">
+    <div className="container md:py-1">
         <MovieList type={'trending'}/>
         <MovieList type={'kdrama'}/>
         <MovieList type={'anime'}/>

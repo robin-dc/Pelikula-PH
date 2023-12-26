@@ -38,7 +38,7 @@ const WatchLater = () => {
     return (
         <>
           <Navbar/>
-            <div className='min-h-screen bg-primary container mt-9'>
+            <div className='px-1 md:px-0 min-h-screen bg-primary container mt-9'>
             <div className='flex justify-between'>
                 <div className='flex gap-[0.7rem] items-center'>
                     <span className='h-[2.5rem] w-[0.4rem] bg-secondary'></span>
@@ -59,7 +59,7 @@ const WatchLater = () => {
                         <p className='text-light'>There's no movie here.</p>
                     </div>
                 :
-                <div className='grid grid-cols-6 py-2 px-1'>
+                <div className='grid grid-cols-4 md:grid-cols-6 py-2 px-1'>
                     {data?.map((movie,index) => (
                         <div key={index} className='pb-2 relative group '>
                             <button onClick={() => handleDelete(movie.id)} className='scale-0 group-hover:scale-100 transition-all duration-300 hover:bg-[#414141f5] absolute right-[-0.2rem] top-[-0.9rem] bg-[#2c2c2cf5] rounded-full p-[6px] z-10'>

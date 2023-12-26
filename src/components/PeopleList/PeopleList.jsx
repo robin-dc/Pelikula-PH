@@ -5,15 +5,17 @@ import {SlArrowLeft, SlArrowRight} from 'react-icons/sl'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import Person from '../Person/Person';
+import { useScreen } from '../../utils/ScreenSizeContext';
 
 const PeopleList = ({title, data}) => {
     const swiper = useSwiper();
     const [isReachEnd, setIsReachEnd] = useState(false)
     const [isReachStart, setIsReachStart] = useState(true)
 
+    const { width } = useScreen()
 
     return (
-      <div className='container'>
+      <div className='px-1 md:px-0 container'>
         <div className='border-b-[2px] border-[#4242424d] pt-2 pb-1'>
         <div className='flex gap-[0.7rem] items-center'>
             <span className='h-[2.5rem] w-[0.4rem] bg-secondary'></span>
@@ -24,13 +26,13 @@ const PeopleList = ({title, data}) => {
           // install Swiper modules
           modules={[Navigation, A11y]}
           spaceBetween={0}
-          slidesPerView={7}
+          slidesPerView={width < 700 ? 4 : 7}
           navigation={{
               prevEl: '.custom-prev-button',
               nextEl: '.custom-next-button',
             }}
             effect='fade'
-          className='z-0 py-2 px-1 relative group'
+          className='z-0 py-2 md:px-1 relative group'
           onReachEnd={() => setIsReachEnd(true)}
           onReachBeginning={() => {
             setIsReachEnd(false)

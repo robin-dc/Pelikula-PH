@@ -2,7 +2,7 @@
     @apply mb-10;
 } */
 .swiper-pagination{
-    @apply static mt-2 px-3 flex flex-wrap items-center w-full container gap-[0.5rem] ;
+    @apply static mt-2 md:px-3 flex flex-wrap justify-center md:justify-normal items-center w-full container gap-[0.5rem] ;
 }
 .custom-swiper-bullet{
     @apply py-1 px-[1.5rem] border border-[#ffffff41] text-light text-sm hover:bg-[#e9292c1e] transition;

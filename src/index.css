@@ -132,4 +132,15 @@
   .suggestions::-webkit-scrollbar-track {
     background: transparent;
   }
+
+  @media (max-width: 767px) {
+    .button{
+      @apply px-1 py-[0.3rem]
+    }
+   .intro-animation{
+      width:5rem;
+      margin-top: 4.6rem;
+      height:5rem;
+    }
+  }
 }
