@@ -23,7 +23,7 @@ const PelikulaIntro = () => {
   }, [])
 
   return (
-    <div className='h-full md:p-10 w-full flex justify-center'>
+    <div className='h-full lg:p-10 w-full flex justify-center'>
           <img src={`/images/pelikulaicon.png`} alt="icon" className=' intro-animation'/>
     </div>
   )

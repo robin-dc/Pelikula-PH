@@ -21,8 +21,8 @@ const Dropdown = ({type, closeAllDropdown}) => {
     }
 
     return (
-        <div className='pt-[1.45rem] absolute w-4/5 md:w-fit left-[50%] translate-x-[-50%] md:translate-x-0 mt-4 md:mx-0 md:mt-0 md:left-0'>
-            <div className='overflow-y-scroll overflow-x-hidden md:overflow-auto max-h-[300px] flex flex-col md:flex-row md:divide-x-[1px] md:divide-[#303030af] border-2 border-[#303030af] bg-black rounded-lg  px-1 py-[1.5rem] text-[0.9rem]'>
+        <div className='pt-[1.45rem] absolute w-4/5 lg:w-fit left-[50%] translate-x-[-50%] lg:translate-x-0 mt-4 lg:mx-0 lg:mt-0 lg:left-0'>
+            <div className='overflow-y-scroll overflow-x-hidden lg:overflow-auto max-h-[300px] flex flex-col lg:flex-row lg:divide-x-[1px] lg:divide-[#303030af] border-2 border-[#303030af] bg-black rounded-lg  px-1 py-[1.5rem] text-[0.9rem]'>
                 <ul className='px-1 flex flex-col justify-between'>
                     {firstHalfOfGenres.map((genre,index) =>
                         <NavLink
@@ -44,7 +44,7 @@ const Dropdown = ({type, closeAllDropdown}) => {
                         <NavLink
                             to={`/${type}list/${genre.name}`}
                             onClick={() => handleClick(type, genre)}
-                            className='text-light hover:text-white cursor-pointer py-[0.3rem] px-1 md:px-2 hover:translate-x-[0.3rem] transition duration-300 hover:bg-[#30303073] min-w-max'
+                            className='text-light hover:text-white cursor-pointer py-[0.3rem] px-1 lg:px-2 hover:translate-x-[0.3rem] transition duration-300 hover:bg-[#30303073] min-w-max'
                             key={index}
                             style={({ isActive, isPending }) => {
                                 return {

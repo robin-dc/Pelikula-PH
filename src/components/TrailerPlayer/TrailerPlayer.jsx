@@ -82,7 +82,7 @@ const TrailerPlayer = () => {
 
   return (
 
-    <div className={`fixed group transition-all ease-in-out duration-1000 ${isZoomIn ? "top-0 bottom-0 left-0 right-0" : "top-[50%] rounded-xl overflow-hidden left-[50%] translate-x-[-50%] translate-y-[-50%] h-[220px] md:h-[450px] aspect-video"} z-[99999999999] rounded-sm bg-black`}>
+    <div className={`fixed group transition-all ease-in-out duration-1000 ${isZoomIn ? "top-0 bottom-0 left-0 right-0" : "top-[50%] rounded-xl overflow-hidden left-[50%] translate-x-[-50%] translate-y-[-50%] h-[220px] lg:h-[450px] aspect-video"} z-[99999999999] rounded-sm bg-black`}>
 
     {isIntro ?
       <PelikulaIntro/> :
@@ -100,18 +100,18 @@ const TrailerPlayer = () => {
               id="widget2">
             </iframe>
 
-            <img src={`/images/pelikulaicon.png`} alt="icon" className={`hidden group-hover:block absolute top-0 left-0 z-10 w-[3.9rem] md:w-[4.5rem] ${isZoomIn ? "m-[1.1rem] p-[0.5rem]" : "md:m-[0.5rem] p-1"} transition-all ease-in-out duration-1000`}/>
+            <img src={`/images/pelikulaicon.png`} alt="icon" className={`hidden group-hover:block absolute top-0 left-0 z-10 w-[3.9rem] lg:w-[4.5rem] ${isZoomIn ? "m-[1.1rem] p-[0.5rem]" : "lg:m-[0.5rem] p-1"} transition-all ease-in-out duration-1000`}/>
 
             <button onClick={() => {
               setisZoomIn(!isZoomIn)
               zoomIn()
             }} className={`${isZoomIn ? "bottom-[0rem] right-[0.8rem] p-[1.3rem]" : "bottom-0 right-0 p-1"} hidden group-hover:block absolute hover:scale-[1.2] transition duration-500 z-10`}>
-            <BiFullscreen className={`${isZoomIn ? "text-[2rem]" : "text-[1.1rem] md:text-[1.5rem]"}`}/>
+            <BiFullscreen className={`${isZoomIn ? "text-[2rem]" : "text-[1.1rem] lg:text-[1.5rem]"}`}/>
             </button>
 
           {!isZoomIn &&
-            <Link to={`/${newPath}`} className='hidden group-hover:block transition duration-500 hover:bg-[#414141f5] absolute right-[0.7rem] top-[0.7rem] bg-[#2c2c2cf5] rounded-full p-[4px] md:p-[6px] z-10'>
-              <LiaTimesSolid className='text-base md:text-[1.1rem]'/>
+            <Link to={`/${newPath}`} className='hidden group-hover:block transition duration-500 hover:bg-[#414141f5] absolute right-[0.7rem] top-[0.7rem] bg-[#2c2c2cf5] rounded-full p-[4px] lg:p-[6px] z-10'>
+              <LiaTimesSolid className='text-base lg:text-[1.1rem]'/>
             </Link>}
         </>
 
@@ -123,8 +123,8 @@ const TrailerPlayer = () => {
       <div className={`pointer-events-none w-[20%] ${!isIntro && "hidden"} bg-gradient-to-l from-transparent to-black absolute top-0 left-0 bottom-0`}></div>
 
 
-      <div className='h-[23%] md:h-[15%] bg-black absolute top-0 right-0 left-0 w-full'></div>
-      <div className='h-[18%] md:h-[10%] bg-black absolute bottom-0 right-0 left-0'></div>
+      <div className='h-[23%] lg:h-[15%] bg-black absolute top-0 right-0 left-0 w-full'></div>
+      <div className='h-[18%] lg:h-[10%] bg-black absolute bottom-0 right-0 left-0'></div>
     </div>
   )
 }

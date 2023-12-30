@@ -72,7 +72,7 @@ const Search = () => {
         }
 
         {data?.results.length !== 0 && keyword !== "" &&
-          <div className='md:suggestions overflow-y-scroll overflow-x-hidden w-full max-h-[300px] absolute top-[3.5rem] left-0 flex flex-col divide-y-[1px] divide-[#303030af] border-2 border-[#303030af] bg-black rounded-lg px-1 py-[1.5rem] text-[0.9rem]'>
+          <div className='lg:suggestions overflow-y-scroll overflow-x-hidden w-full max-h-[300px] absolute top-[3.5rem] left-0 flex flex-col divide-y-[1px] divide-[#303030af] border-2 border-[#303030af] bg-black rounded-lg px-1 py-[1.5rem] text-[0.9rem]'>
             {suggestions?.map((suggestion,index) => (
               <Link to={`/${searchType}/${suggestion.id}`}
                     key={index}

@@ -23,7 +23,7 @@ const TrailerList = ({data}) => {
       };
 
     return (
-        <div className='px-1 md:px-0 container'>
+        <div className='px-1 lg:px-0 container'>
             <div className='py-2'>
                 <div className='flex gap-[0.7rem] items-center'>
                     <span className='h-[2.5rem] w-[0.4rem] bg-secondary'></span>
@@ -45,7 +45,7 @@ const TrailerList = ({data}) => {
                     nextEl: '.custom-next-button',
                 }}
                 effect='fade'
-                className='z-0 py-2 md:px-1 relative group'
+                className='z-0 py-2 lg:px-1 relative group'
                 onReachEnd={() => setIsReachEnd(true)}
                 onReachBeginning={() => {
                 setIsReachEnd(false)
@@ -53,16 +53,16 @@ const TrailerList = ({data}) => {
                 }}
             >
                     {/* gradients */}
-                    <div className='hidden md:block absolute h-full w-[150px] pointer-events-none bg-gradient-to-r from-primary to-transparent z-10 top-0 left-0 '></div>
-                    <div className='hidden md:block absolute h-full w-[200px] pointer-events-none bg-gradient-to-l from-primary to-transparent z-10 top-0 right-0 '></div>
+                    <div className='hidden lg:block absolute h-full w-[150px] pointer-events-none bg-gradient-to-r from-primary to-transparent z-10 top-0 left-0 '></div>
+                    <div className='hidden lg:block absolute h-full w-[200px] pointer-events-none bg-gradient-to-l from-primary to-transparent z-10 top-0 right-0 '></div>
 
                     {/* custom swiper button */}
-                    <button className={`custom-prev-button absolute none left-0 top-[50%] translate-y-[-50%] text-[#f1c40f] opacity-0 group-hover:opacity-100 transition duration-500 text-[2rem] z-[999] cursor-pointer h-full px-1 ${!isReachStart ? 'hidden md:block' : 'hidden'}`}
+                    <button className={`custom-prev-button absolute none left-0 top-[50%] translate-y-[-50%] text-[#f1c40f] opacity-0 group-hover:opacity-100 transition duration-500 text-[2rem] z-[999] cursor-pointer h-full px-1 ${!isReachStart ? 'hidden lg:block' : 'hidden'}`}
                     onClick={() => swiper?.slidePrev()}>
                     <SlArrowLeft/>
                     </button>
                     <button
-                    className={`custom-next-button absolute right-0 translate-y-[-50%] top-[50%] text-[#f1c40f] opacity-0 group-hover:opacity-100 transition duration-500 text-[2rem] z-[999] cursor-pointer h-full px-1 ${!isReachEnd ? 'hidden md:block' : 'hidden'}`}
+                    className={`custom-next-button absolute right-0 translate-y-[-50%] top-[50%] text-[#f1c40f] opacity-0 group-hover:opacity-100 transition duration-500 text-[2rem] z-[999] cursor-pointer h-full px-1 ${!isReachEnd ? 'hidden lg:block' : 'hidden'}`}
                     onClick={() => {
                     swiper?.slideNext()
                     setIsReachStart(false)
@@ -72,12 +72,12 @@ const TrailerList = ({data}) => {
 
                     {/* swiper slide */}
                     {reversedData?.map((trailer,index) => (
-                    <SwiperSlide key={index} className='h-[400px] md:h-[450px] md:w-[80%]'>
+                    <SwiperSlide key={index} className='h-[400px] lg:h-[450px] lg:w-[80%]'>
                      <iframe
                         frameborder="0"
                         allowfullscreen="1"
                         loading="lazy"
-                        className='md:px-3 w-full h-full'
+                        className='lg:px-3 w-full h-full'
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         title={`${trailer.name} | ${trailer.type}`}
                         src={`https://www.youtube.com/embed/${trailer.key}?autoplay=0&amp;mute=0&amp;controls=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=1"

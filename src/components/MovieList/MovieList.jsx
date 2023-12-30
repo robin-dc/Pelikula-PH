@@ -40,8 +40,8 @@ const MovieList = ({type}) => {
                           sortedDescending.filter(movie => movie.poster_path !== null)
 
   return (
-    <div className="py-1 md:py-2">
-        <h1 className="text-[1.3rem] md:text-[1.5rem] font-semibold ml-1">{category}</h1>
+    <div className="py-1 lg:py-2">
+        <h1 className="text-[1.3rem] lg:text-[1.5rem] font-semibold ml-1">{category}</h1>
         <Swiper
       // install Swiper modules
       modules={[Navigation, A11y]}
@@ -52,7 +52,7 @@ const MovieList = ({type}) => {
           nextEl: '.custom-next-button',
         }}
         effect='fade'
-      className='z-0 py-2 px-[0.2rem] md:px-1 relative group'
+      className='z-0 py-2 px-[0.2rem] lg:px-1 relative group'
       onReachEnd={() => setIsReachEnd(true)}
       onReachBeginning={() => {
         setIsReachEnd(false)

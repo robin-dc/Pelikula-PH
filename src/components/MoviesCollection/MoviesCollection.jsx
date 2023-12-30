@@ -63,7 +63,7 @@ const MoviesCollection = () => {
         <>
             <Navbar/>
             {!isFetching ?
-            <div className='px-1 md:px-0 container mt-9 min-h-screen'>
+            <div className='px-1 lg:px-0 container mt-9 min-h-screen'>
                 <div className='flex gap-[0.7rem] items-center'>
                     <span className='h-[2.5rem] w-[0.4rem] bg-secondary'></span>
                     {firstPath == "search" ?
@@ -71,7 +71,7 @@ const MoviesCollection = () => {
                             Search for {cleanKeyword}:
                         </h3>
                         :
-                        <h3 className="text-[1.3rem] md:text-[1.5rem] font-semibold">
+                        <h3 className="text-[1.3rem] lg:text-[1.5rem] font-semibold">
                             {genreName} {type == 'tv' ? "TV Series" : "Movies"}
                         </h3>
                     }
@@ -83,7 +83,7 @@ const MoviesCollection = () => {
                     </div>
                 }
 
-                <div className='grid grid-cols-4 md:grid-cols-6 py-2 md:px-1'>
+                <div className='grid grid-cols-4 lg:grid-cols-6 py-2 lg:px-1'>
                     {filteredMovies.map((movie, index) => (
                         <div key={index} className='pb-2'>
                             <Movie type={type} {...movie} />
