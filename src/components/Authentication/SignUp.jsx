@@ -2,11 +2,12 @@ import { Link, useNavigate } from "react-router-dom"
 import { signInWithGoogle, signUpWithCredentials } from "../../config/firebase"
 import { useForm } from "react-hook-form"
 import { useEffect, useState } from "react"
-import { Loader } from '..'
+import { Loader, Toast } from '..'
 
 const SignUp = () => {
     const token = localStorage.getItem("token")
     const [isLoading, setIsLoading] = useState(false)
+    const [isSuccess, setIsSuccess] = useState(false)
     const navigate = useNavigate()
 
     const {
@@ -31,15 +32,26 @@ const SignUp = () => {
         }
     }, [])
 
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setIsSuccess(false)
+        }, 2000)
+
+        return () => clearTimeout(timeout)
+    }, [isSuccess])
+
     const authenticate = async (formValues) => {
         setIsLoading(true)
         try {
             const user = await signUpWithCredentials(getValues("name"), formValues.email, formValues.password)
             if (user) {
-                setIsLoading(false)
-                navigate("/")
+                setIsSuccess(true)
+                setTimeout(() => {
+                    setIsLoading(false)
+                    navigate("/")
+                    reset()
+                }, 2500)
             }
-            reset()
         } catch (error) {
             setIsLoading(false)
             if (error.code === "auth/email-already-in-use") {
@@ -67,11 +79,14 @@ const SignUp = () => {
         </div>
         <header className="fixed top-0 left-0 right-0 p-2">
             <nav>
-                <img src="/images/pelikulaph.png" className="w-9 md:w-10 h-fit" alt="logo" />
+                <img src="/images/pelikulaph.png" className="w-9 lg:w-10 h-fit" alt="logo" />
             </nav>
         </header>
         <div className="z-10 px-1 py-2 mt-3">
-            <div className="max-w-[28rem] bg-[#000000c7] p-2 md:p-3 rounded-lg">
+            {isSuccess !== false &&
+                <Toast variant="success" message="Account Created Successfully" />
+            }
+            <div className="max-w-[28rem] bg-[#000000c7] p-2 lg:p-3 rounded-lg">
                 <h1 className="text-[2.3rem] font-semibold mb-2">Sign Up, It's Free</h1>
 
                 <form

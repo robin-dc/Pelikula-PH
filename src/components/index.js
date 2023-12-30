@@ -24,3 +24,4 @@ export {default as PersonDetails} from './PersonDetails/PersonDetails';
 export {default as TrailerPlayer} from './TrailerPlayer/TrailerPlayer';
 export {default as PelikulaIntro} from './PelikulaIntro/PelikulaIntro';
 export {default as Loader} from './Loader/Loader';
+export {default as Toast} from './Toast/Toast';
