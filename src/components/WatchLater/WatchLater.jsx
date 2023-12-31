@@ -50,7 +50,7 @@ const WatchLater = () => {
     return (
         <>
           <Navbar/>
-            <div className='px-1 lg:px-0 min-h-screen bg-primary container mt-9'>
+            <div className='px-1 lg:px-0 min-h-screen bg-primary container mt-6 lg:mt-9'>
             <div className='flex justify-between'>
                 {isSuccess !== false &&
                     <Toast variant="success" message="Deleted Successfully" />
@@ -74,7 +74,7 @@ const WatchLater = () => {
                         <p className='text-light'>There's no movie here.</p>
                     </div>
                 :
-                <div className='grid grid-cols-4 lg:grid-cols-6 py-2 px-1'>
+                <div className='grid grid-cols-3 lg:grid-cols-6 py-2 lg:px-1'>
                     {data?.map((movie,index) => (
                         <div key={index} className='pb-2 relative group '>
                             <button onClick={() => handleDelete(movie.id)} className='scale-0 group-hover:scale-100 transition-all duration-300 hover:bg-[#414141f5] absolute right-[-0.2rem] top-[-0.9rem] bg-[#2c2c2cf5] rounded-full p-[6px] z-10'>

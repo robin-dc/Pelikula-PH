@@ -21,9 +21,6 @@
   body::-webkit-scrollbar{
     display: none;
   }
-  .hero{
-    background-image: url('images/hero.jpg');
-  }
   .overlay{
     background: #141414;
     background: -webkit-linear-gradient(90deg, #141414 0%, rgba(0, 0, 0, 0) 100%);

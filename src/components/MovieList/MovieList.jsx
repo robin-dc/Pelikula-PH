@@ -46,7 +46,7 @@ const MovieList = ({type}) => {
       // install Swiper modules
       modules={[Navigation, A11y]}
       spaceBetween={0}
-      slidesPerView={width < 700 ? 4 : 6}
+      slidesPerView={width < 700 ? 3 : 6}
       navigation={{
           prevEl: '.custom-prev-button',
           nextEl: '.custom-next-button',

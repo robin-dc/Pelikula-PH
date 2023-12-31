@@ -74,19 +74,19 @@ const SignUp = () => {
 
     // handle email already in used
   return (
-    <div className="hero min-h-screen w-full bg-cover relative bg-no-repeat flex items-center justify-center">
+    <div className="h-screen lg:h-fit min-h-screen w-full bg-cover relative bg-no-repeat flex flex-col items-center" style={{backgroundImage: "url('images/hero.jpg')"}}>
         <div className="overlay-1 absolute top-0 left-0 right-0 bottom-0">
         </div>
-        <header className="fixed top-0 left-0 right-0 p-2">
+        <header className="z-[999] w-full pt-1 px-1 lg:pt-2 lg:px-2">
             <nav>
                 <img src="/images/pelikulaph.png" className="w-9 lg:w-10 h-fit" alt="logo" />
             </nav>
         </header>
-        <div className="z-10 px-1 py-2 mt-3">
+        <div className="z-10 w-full px-[0.6rem] lg:px-0 pb-2 mt-1 flex justify-center items-center h-[100%]">
             {isSuccess !== false &&
                 <Toast variant="success" message="Account Created Successfully" />
             }
-            <div className="max-w-[28rem] bg-[#000000c7] p-2 lg:p-3 rounded-lg">
+            <div className="w-full md:max-w-[28rem] bg-[#000000c7] p-2 lg:p-3 rounded-lg">
                 <h1 className="text-[2.3rem] font-semibold mb-2">Sign Up, It's Free</h1>
 
                 <form

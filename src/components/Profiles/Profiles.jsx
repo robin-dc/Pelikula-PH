@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import Toast from "../Toast/Toast"
 
 const Profiles = () => {
@@ -11,12 +11,15 @@ const Profiles = () => {
   useEffect(() => {
     window.scrollTo(0,0)
     const userData = JSON.parse(localStorage.getItem('userData'))
+    const isLoggedFirst = JSON.parse(localStorage.getItem('loggedUser'))
 
     setPhotoURL(userData?.photoURL)
     setName(userData?.displayName)
     setEmail(userData?.email)
 
-    setIsVisible(true)
+    if(isLoggedFirst){
+      setIsVisible(true)
+    }
 
     const timeout = setTimeout(() => {
       setIsVisible(false)
@@ -30,7 +33,7 @@ const Profiles = () => {
         {isVisible && <Toast variant="success" message="Login Successfully"/>}
         <div className="container flex flex-col justify-center items-center min-h-screen">
             <h1 className="text-[2rem] lg:text-[3rem]">Who is Watching?</h1>
-            <Link to="/home" className="flex flex-col items-center justify-center group">
+            <Link to="/home" onClick={() => localStorage.removeItem('loggedUser')} className="flex flex-col items-center justify-center group">
                 <img
                   src={photoURL ? photoURL : "/images/default-red.png"}
                   alt="profile1"
