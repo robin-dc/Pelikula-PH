@@ -19,7 +19,7 @@ const Toast = ({message, variant}) => {
     }, [])
 
     return (
-            <div className={`transition-all ease-in-out duration-100 ${!isVisible ? "translate-x-[50rem]" : "translate-x-0"} z-[999999999999999999] p-[0.7rem] px-1 bg-primary border border-light rounded-md flex items-center gap-[0.3rem] fixed ${isMobile ? "bottom-1 right-1 left-1" : "top-[5.5rem] right-2"}`}>
+            <div className={`transition-all ease-in-out duration-100 ${!isVisible ? "translate-x-[50rem]" : "translate-x-0"} z-[999999999999999999] p-[0.7rem] px-1 bg-primary border border-[#303030af] rounded-md flex items-center gap-[0.3rem] fixed ${isMobile ? "bottom-1 right-1 left-1" : "top-[5.5rem] right-2"}`}>
                 {variant == "error" ? <MdError className='fill-red-700 text-[1.3rem]'/> : <FaCheckCircle className='fill-green-700 text-[1.3rem]'/>}
                 <h4 className='text-base text-light'>{message}</h4>
             </div>
