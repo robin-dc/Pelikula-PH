@@ -48,7 +48,9 @@ const Navbar = () => {
   return (
     <header className={`${isDarkNav && "bg-[#0d0c0c]" } transition duration-500 fixed top-0 left-0 right-0 z-[9999999]`}>
         <nav className="relative p-1 lg:px-2 lg:py-[1.4rem] pb-[1.1rem] flex justify-between items-center">
-            <img src="/images/pelikulaph.png" className="w-7 h-fit" alt="logo" />
+            <Link to="/home">
+              <img src="/images/pelikulaph.png" className="w-7 h-fit" alt="logo" />
+            </Link>
             {isDropdownOpen &&
             <div className='flex-1 lg:px-5'>
               <div className={`${isMobile && "py-[1.5rem] lg:py-0 border-2 border-[#303030af] bg-black rounded-lg absolute mt-2 right-0 left-0 mx-1 lg:static"}`}>

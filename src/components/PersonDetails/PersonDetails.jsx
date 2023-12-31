@@ -68,7 +68,7 @@ const PersonDetails = () => {
                     // install Swiper modules
                     modules={[Navigation, A11y]}
                     spaceBetween={0}
-                    slidesPerView={width < 700 ? 4 : 6}
+                    slidesPerView={width < 700 ? 3 : 6}
                     navigation={{
                         prevEl: '.custom-prev-button',
                         nextEl: '.custom-next-button',
@@ -82,9 +82,9 @@ const PersonDetails = () => {
                         }}
                     >
                     <div
-                    className='absolute h-full w-[150px] pointer-events-none bg-gradient-to-r from-primary to-transparent z-10 top-0 left-0 '></div>
+                    className='hidden lg:block absolute h-full w-[150px] pointer-events-none bg-gradient-to-r from-primary to-transparent z-10 top-0 left-0 '></div>
                     <div
-                    className='absolute h-full w-[200px] pointer-events-none bg-gradient-to-l from-primary to-transparent z-10 top-0 right-0 '></div>
+                    className='hidden lg:block absolute h-full w-[200px] pointer-events-none bg-gradient-to-l from-primary to-transparent z-10 top-0 right-0 '></div>
                     <button
                     className={`custom-prev-button absolute none left-0 top-[50%] translate-y-[-50%] text-light opacity-0 group-hover:opacity-40 transition duration-500 text-[2rem] z-[999] cursor-pointer h-full px-1 ${!isReachStart ? 'block' : 'hidden'}`}
                     onClick={() => swiper?.slidePrev()}>
