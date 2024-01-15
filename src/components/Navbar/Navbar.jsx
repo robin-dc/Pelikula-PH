@@ -36,9 +36,11 @@ const Navbar = () => {
   }, [width])
 
   const closeAllDropdown = () => {
-    setIsDropdownOpen(false)
     setTvDrop(false)
     setMovieDrop(false)
+    if(isMobile){
+      setIsDropdownOpen(false)
+    }
   }
 
   const toggleDropdown = (e) => {
