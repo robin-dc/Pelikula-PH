@@ -1,8 +1,8 @@
-<div align='center'><img style="width:30%" src='https://user-images.githubusercontent.com/105128267/218077760-5694a4ac-4e37-4de7-b31f-268ccd27400a.png'/></div>
+<div align='center'><img style="width:30%" src='https://github.com/robin-dc/Pelikula-PH/blob/main/public/images/pelikulaph.png'/></div>
 
 <h2>About Pelikula</h2>
 
-  <p>A Netflix-themed dynamic movie app utilizing the TMDB API. Since many of my friends frequently ask me for movie recommendations, I created an app that displays the latest movies and shows tailored to their genre preferences, including K-drama, Anime, Disney, and more. This project also serves as a learning experience for Firebase authentication and Firestore.</p>
+  <p>A Netflix-themed dynamic movie app utilizing the TMDB API. Since many of my friends frequently ask me for movie recommendations, I created an app that displays the latest movies and shows tailored to their genre preferences, including K-drama, Anime, Disney, and more. This project also serves as a learning experience for Firebase authentication and Firestore. I designed the icon and logo of the website using Figma.</p>
 
 
 👉 Live Demo: <a href='https://pelikulaph-97d16.web.app/'>Live Demo</a>
@@ -22,6 +22,6 @@
 <br>
 
 <div align='center'>
-<img src='https://user-images.githubusercontent.com/105128267/218077675-f50ac9ae-8d2c-4196-aed8-f4490e142960.png'/>
+<img src='https://github.com/robin-dc/Pelikula-PH/blob/main/public/images/pelikula_ss.png'/>
 
 </div>
