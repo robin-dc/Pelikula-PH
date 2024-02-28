@@ -18,7 +18,7 @@
 » REACT HOOK FORM <br>
 » SWIPER JS
 
-<h2>Screenshots of the Project 📸</h2>
+<h2>Screenshot of the Project</h2>
 <br>
 
 <div align='center'>
