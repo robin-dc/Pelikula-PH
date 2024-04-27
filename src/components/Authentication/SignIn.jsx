@@ -86,7 +86,7 @@ const SignIn = () => {
                         <small className="absolute top-[0.5rem] left-[1.7rem] text-light">Email</small>
                         <input
                             type="email"
-                            className="bg-[#404040] outline-none w-full pl-[1.7rem] pt-[0.6rem]"
+                            className="bg-[#404040] outline-none w-full pl-[1.7rem] pt-[0.6rem] placeholder:text-[#ffffff3f]"
                             {...register("email", {
                                 required: "Email is Required",
                                 pattern: {
@@ -94,6 +94,7 @@ const SignIn = () => {
                                     message: 'Invalid Email Format'
                                 }
                             })}
+                            placeholder="demo acc: admin@gmail.com"
                         />
                     </div>
                     {errors.email && <small className="leading-[0px] text-secondary">{errors.email.message}</small>}
@@ -102,10 +103,11 @@ const SignIn = () => {
                         <small className="absolute top-[0.5rem] left-[1.7rem] text-light">Password</small>
                         <input
                             type="password"
-                            className="bg-[#404040] w-full outline-none pl-[1.7rem] pt-[0.6rem]"
+                            className="bg-[#404040] w-full outline-none pl-[1.7rem] pt-[0.6rem] placeholder:text-[#ffffff3f]"
                             {...register("password", {
                                 required: "Password is required"
                             })}
+                            placeholder="demo acc: admin123"
                         />
                     </div>
                     {errors.password && <small className="leading-[0px] text-secondary">{errors.password.message}</small>}
