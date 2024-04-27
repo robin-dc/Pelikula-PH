@@ -17,4 +17,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PELIKULAPH_97D16 }}'
           channelId: live
-          projectId: pelikulaph-72065
+          projectId: 1:410333173902:web:b0f114ff638917698a51df
