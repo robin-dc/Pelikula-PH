@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "pelikulaph-97d16"
-  }
+    "default": "pelikulaph-72065",
+    "pelikula": "pelikulaph-72065"
+  },
+  "targets": {},
+  "etags": {}
 }
