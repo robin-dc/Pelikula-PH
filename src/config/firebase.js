@@ -23,12 +23,12 @@ import {
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: "pelikulaph-97d16.firebaseapp.com",
-  projectId: "pelikulaph-97d16",
-  storageBucket: "pelikulaph-97d16.appspot.com",
-  messagingSenderId: "410333173902",
-  appId: "1:410333173902:web:b0f114ff638917698a51df",
-  measurementId: "G-HM2JTDWDDE"
+  authDomain: "pelikulaph-72065.firebaseapp.com",
+  projectId: "pelikulaph-72065",
+  storageBucket: "pelikulaph-72065.appspot.com",
+  messagingSenderId: "34317435127",
+  appId: "1:34317435127:web:5b419c38cf736e457413f2",
+  measurementId: "G-ZGNRGJZ17Z"
 };
 
 // Initialize Firebase
