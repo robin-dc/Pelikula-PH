@@ -103,6 +103,7 @@ const SignUp = () => {
                             {...register("name", {
                                 required: "Name is Required",
                             })}
+                            autocomplete="off"
                         />
                     </div>
                     {errors.name && <small className="leading-[0px] text-secondary">{errors.name.message}</small>}
@@ -120,6 +121,7 @@ const SignUp = () => {
                                     message: 'Invalid Email Format'
                                 }
                             })}
+                            autocomplete="off"
                         />
                     </div>
                     {errors.email && <small className="leading-[0px] text-secondary">{errors.email.message}</small>}
@@ -135,6 +137,7 @@ const SignUp = () => {
                                     return fieldValue.length >= 8 || "Password must be at least 8 characters long"
                                 }
                             })}
+                            autocomplete="off"
                         />
                     </div>
                     {errors.password && <small className="leading-[0px] text-secondary">{errors.password.message}</small>}

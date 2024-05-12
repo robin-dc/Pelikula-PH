@@ -95,6 +95,7 @@ const SignIn = () => {
                                 }
                             })}
                             placeholder="demo acc: admin@gmail.com"
+                            autocomplete="off"
                         />
                     </div>
                     {errors.email && <small className="leading-[0px] text-secondary">{errors.email.message}</small>}
@@ -108,6 +109,7 @@ const SignIn = () => {
                                 required: "Password is required"
                             })}
                             placeholder="demo acc: admin123"
+                            autocomplete="off"
                         />
                     </div>
                     {errors.password && <small className="leading-[0px] text-secondary">{errors.password.message}</small>}
